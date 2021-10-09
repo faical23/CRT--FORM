@@ -1,0 +1,912 @@
+textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, input:hover, input:active, input:visited, textarea:focus, textarea:hover, textarea:active, textarea:visited {
+  outline: none !important;
+}
+
+.userDashBoard {
+  padding: 20px 20px;
+}
+
+.userDashBoard .buttonNavigation {
+  text-align: center;
+  width: 70%;
+}
+
+.userDashBoard .buttonNavigation .UserDashLogo img {
+  margin: 0px;
+}
+
+.userDashBoard .buttonNavigation .navgationLists {
+  border: 1px solid black;
+  width: 100%;
+  border-radius: 50px;
+  text-align: center;
+  margin-bottom: 0px;
+  padding: 10px 20px;
+  margin: 10px 0px;
+}
+
+.userDashBoard .buttonNavigation .navgationLists p {
+  margin-bottom: 0px;
+}
+
+.userDashBoard .buttonNavigation .InscriptionBtn {
+  background-color: #5e72e4;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userDashBoard .buttonNavigation .InscriptionBtn svg {
+  fill: white;
+  position: relative;
+  right: 10px;
+}
+
+.userDashBoard .buttonNavigation .InscriptionBtn:hover {
+  background-color: #425cf5;
+}
+
+.userDashBoard .buttonNavigation .ConnexionBtn {
+  border: 1px solid #b4b4b4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b4b4b4;
+}
+
+.userDashBoard .buttonNavigation .ConnexionBtn svg {
+  fill: #b4b4b4;
+  position: relative;
+  right: 10px;
+}
+
+.userDashBoard .buttonNavigation .ConnexionBtn:hover {
+  background-color: #5e72e4;
+  color: white;
+  border: none;
+}
+
+.userDashBoard .buttonNavigation .ConnexionBtn:hover svg {
+  fill: white;
+}
+
+@media screen and (max-width: 1024px) {
+  .userDashBoard .buttonNavigation {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .userDashBoard .buttonNavigation {
+    width: 100%;
+  }
+}
+
+.userDashBoard .ValiderBtn {
+  background-color: #5e72e4;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userDashBoard .ValiderBtn svg {
+  fill: white;
+  position: relative;
+  right: 10px;
+}
+
+.userDashBoard .ValiderBtn:hover {
+  background-color: #425cf5;
+}
+
+.userDashBoard .FormInscription {
+  padding: 20px 40px;
+  border-radius: 20px;
+  background-color: #f7fafc;
+  box-shadow: 0px 0px 11px -7px black;
+}
+
+.userDashBoard .FormInscription .ZoneInput {
+  padding: 5px 0px;
+}
+
+.userDashBoard .FormInscription .ZoneInput span {
+  color: #525f7f;
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild {
+  box-shadow: 0 1px 11px -9px black;
+  border: 0;
+  transition: box-shadow .15s ease;
+  margin: 10px 0px;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  background-color: white;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild input, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea {
+  padding: 10px 4px;
+  position: relative;
+  left: 10px;
+  width: 100%;
+  color: #8898aa;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild input:focus, .userDashBoard .FormInscription .ZoneInput .InputFaild input:hover, .userDashBoard .FormInscription .ZoneInput .InputFaild input:active, .userDashBoard .FormInscription .ZoneInput .InputFaild input:visited, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:focus, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:hover, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:active, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:visited {
+  outline: none;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild ::placeholder {
+  color: #bcc2c8;
+  position: relative;
+  top: 1px;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild svg {
+  fill: #bcc2c8;
+  width: 25px;
+  height: 25px;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild textarea {
+  height: 150px;
+}
+
+.userDashBoard .FormInscription .ZoneInput .InputFaild textarea:focus, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:hover, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:active, .userDashBoard .FormInscription .ZoneInput .InputFaild textarea:visited {
+  outline: none;
+}
+
+.userDashBoard .FormInscription .CoverImg .AddImg {
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 20px 20px 0px;
+  cursor: pointer;
+  width: 10%;
+  text-align: center;
+  object-fit: cover;
+}
+
+.userDashBoard .FormInscription .CoverImg .AddImg svg {
+  width: 50px;
+  height: 40px;
+  fill: black;
+}
+
+.userDashBoard .FormInscription .CoverImg .AddImg img {
+  width: 100px;
+  height: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+  .userDashBoard .FormInscription .CoverImg .AddImg {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .userDashBoard .FormInscription .CoverImg .AddImg {
+    width: 40%;
+  }
+}
+
+.userDashBoard .FormInscription .LesImgs {
+  display: flex;
+}
+
+.userDashBoard .FormInscription .LesImgs .AddImg {
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px 20px 20px 0px;
+  cursor: pointer;
+  width: 10%;
+  text-align: center;
+  object-fit: cover;
+}
+
+.userDashBoard .FormInscription .LesImgs .AddImg svg {
+  width: 50px;
+  height: 40px;
+  fill: black;
+}
+
+.userDashBoard .FormInscription .LesImgs .AddImg img {
+  width: 100px;
+  height: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+  .userDashBoard .FormInscription .LesImgs .AddImg {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .userDashBoard .FormInscription .LesImgs {
+    display: block;
+  }
+  .userDashBoard .FormInscription .LesImgs .AddImg {
+    width: 40%;
+  }
+}
+
+.userDashBoard .FormInscription .VldBtn {
+  background-color: #5e72e4;
+  color: white;
+  padding: 10px 50px;
+  border-radius: 30px;
+  margin: 10px 0px;
+}
+
+.userDashBoard .FormInscription .VldBtn:hover {
+  background-color: #425cf5;
+}
+
+.userDashBoard .FormInscription textarea {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #d1d1d1;
+  background-color: white;
+  margin: 10px 0px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.userDashBoard .FormInscription .v-select > .v-input__control > .v-input__slot {
+  background-color: white;
+  border-radius: 0.375rem;
+  padding: 0px 10px;
+  border: none !important;
+}
+
+.userDashBoard .FormInscription .v-select > .v-input__control > .v-input__slot span {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 560px) {
+  .userDashBoard .FormInscription {
+    padding: 20px 20px;
+  }
+}
+
+.buttonNavigation {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonNavigation .UserDashLogo {
+  width: 100%;
+  margin: 10% 0%;
+}
+
+.buttonNavigation .UserDashLogo img {
+  margin-left: 30%;
+}
+
+.buttonNavigation .navgationLists {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: gray;
+}
+
+.confirmation {
+  background-image: url(https://searchcept.com/IMAGES/organismeImg2.jpg);
+  z-index: 100;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding: 200px 0px;
+  text-align: center;
+}
+
+.confirmation img {
+  margin-bottom: 40px;
+  width: 25%;
+}
+
+.confirmation form {
+  box-shadow: 0 0 11px -3px black !important;
+  background-color: #f7fafc;
+  width: 45%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 30px 30px 100px 30px;
+}
+
+.confirmation form .FaildInput {
+  box-shadow: 0 0 11px -7px black;
+  border: 0;
+  transition: box-shadow .15s ease;
+  background-color: white;
+  margin: 20px 0px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.confirmation form .FaildInput input {
+  padding: 10px 3px;
+  position: relative;
+  left: 10px;
+  color: #414141;
+  width: 100%;
+}
+
+.confirmation form .FaildInput input:focus {
+  border: none !important;
+}
+
+.confirmation form .FaildInput ::placeholder {
+  color: #d3d7dc;
+}
+
+.confirmation form .FaildInput svg {
+  fill: #d3d7dc;
+}
+
+.confirmation form .ConnexionBtn {
+  background-color: #5e72e4 !important;
+  color: white;
+}
+
+.confirmation form .ConnexionBtn:hover {
+  background-color: #425cf5;
+}
+
+@media screen and (max-width: 1440px) {
+  .confirmation form {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .confirmation img {
+    width: 50%;
+  }
+  .confirmation form {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .confirmation form {
+    width: 100%;
+    padding: 30px 10px 100px 10px;
+  }
+}
+
+.ProfileUserDashborad {
+  display: flex;
+}
+
+.ProfileUserDashborad .SideBareZone {
+  background-color: white;
+  width: 15%;
+  box-shadow: 0px 0px 11px -5px black;
+  text-align: center;
+  padding: 30px 20px;
+  height: 100vh;
+  position: relative;
+  z-index: 100;
+}
+
+.ProfileUserDashborad .SideBareZone .Logo img {
+  max-width: 80px;
+  object-fit: cover;
+}
+
+.ProfileUserDashborad .SideBareZone .SideBareMenu {
+  position: relative;
+  top: 40px;
+}
+
+.ProfileUserDashborad .SideBareZone .SideBareMenu .MenuItem {
+  display: flex;
+  align-items: center;
+  margin: 25px 0px;
+  cursor: pointer;
+}
+
+.ProfileUserDashborad .SideBareZone .SideBareMenu .MenuItem svg {
+  margin-right: 20px;
+  fill: #f3a4b5 !important;
+  width: 30px;
+  height: 30px;
+}
+
+.ProfileUserDashborad .SideBareZone .SideBareMenu .MenuItem span {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+}
+
+.ProfileUserDashborad .SideBareZone .SideBareMenu .MenuItem:focus span, .ProfileUserDashborad .SideBareZone .SideBareMenu .MenuItem:visited span, .ProfileUserDashborad .SideBareZone .SideBareMenu .MenuItem:hover span {
+  color: black !important;
+}
+
+.ProfileUserDashborad .ContentZone {
+  width: 100%;
+  position: relative;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .Hero {
+  position: relative;
+  width: 100%;
+  padding: 30px;
+  min-height: 600px;
+  background-image: url(https://p4.wallpaperbetter.com/wallpaper/732/321/105/music-festival-crowds-hands-wallpaper-preview.jpg);
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .Hero .Mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.15s ease;
+  background-color: yellow;
+  opacity: .9 !important;
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .Hero h1 {
+  position: relative;
+  color: white;
+  font-size: 2.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding-left: 39px !important;
+  padding-right: 39px !important;
+  top: 240px;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone {
+  margin: 0px 30px;
+  position: relative;
+  margin-top: -6rem !important;
+  box-shadow: 0px 0px 11px -6px black;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .Title {
+  padding: 20px 30px;
+  background-color: white;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .Title button {
+  padding: 5px 25px;
+  border-radius: 5px;
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  color: #fff;
+  font-weight: bolder;
+  box-shadow: 0px 0px 11px -5px black;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .Title h3 {
+  font-family: Open Sans, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #525f7f;
+  text-align: left;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .HeadrTable {
+  padding: 15px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f7fafc;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .HeadrTable span {
+  width: 100%;
+  color: #8898aa;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: start;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable {
+  padding: 15px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable span {
+  width: 100%;
+  color: #2a3d6b;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: start;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer {
+  padding: 3px 10px;
+  width: 40%;
+  border-radius: 5px;
+  background-color: #2dce89;
+  color: #fff;
+  font-weight: bolder;
+  box-shadow: 0px 0px 11px -5px black;
+  position: relative;
+  transition-duration: 2s;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active:hover, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer:hover {
+  bottom: 2px;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer {
+  background-color: #f5365c;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active {
+  background-color: #2dce89;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Icons {
+  display: flex;
+  align-items: center;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Icons svg {
+  width: 40px;
+  height: 40px;
+  margin-right: 30px;
+  fill: #525f7f;
+  cursor: pointer;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Icons svg:hover {
+  fill: #747474;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .BareSearch {
+  padding: 0px 20px 40px 20px;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .BareSearch input {
+  box-shadow: 0 0 11px -6px black;
+  width: 100%;
+  border-radius: 5px;
+  padding: 8px 20px;
+}
+
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .BareSearch ::placeholder {
+  color: #888888;
+}
+
+.ProfileUserDashborad .ContentZone .BtnNavigation {
+  display: none !important;
+}
+
+.ProfileUserDashborad .ContentZone .CardConfiguration {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0px;
+}
+
+.ProfileUserDashborad .ContentZone .CardConfiguration .CardItem {
+  width: 25%;
+  border-radius: 5px;
+  padding: 30px 30px 60px 30px;
+  box-shadow: 0px 0px 11px -7px black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  background: linear-gradient(87deg, #f5365c 0, #f56036 100%) !important;
+}
+
+.ProfileUserDashborad .ContentZone .CardConfiguration .CardItem h5 {
+  color: white !important;
+  text-transform: uppercase !important;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 17px;
+}
+
+.ProfileUserDashborad .ContentZone .CardConfiguration .CardItem svg {
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  background: white;
+  fill: #f5365c;
+}
+
+.ProfileUserDashborad .ContentZone .CardConfiguration .CardItem:hover {
+  bottom: 3px;
+}
+
+.ProfileUserDashborad .Footer {
+  padding: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.ProfileUserDashborad .Footer h5 {
+  color: #5e72e4;
+  font-size: 15px;
+  position: relative;
+  left: 10px;
+}
+
+.ProfileUserDashborad .NewPopup {
+  box-shadow: 0 0 11px -4px black;
+  position: fixed;
+  z-index: 300;
+  background-color: white;
+  width: 50%;
+  border-radius: 10px;
+  height: 700px;
+  left: 25%;
+  top: 10%;
+  text-align: start;
+  /* Track */
+  /* Handle */
+}
+
+.ProfileUserDashborad .NewPopup ::-webkit-scrollbar {
+  width: 10px;
+  position: relative;
+  top: 20px;
+  border-radius: 30px;
+}
+
+.ProfileUserDashborad .NewPopup ::-webkit-scrollbar-track {
+  background-color: #e4e6e9;
+  border-radius: 10px;
+}
+
+.ProfileUserDashborad .NewPopup ::-webkit-scrollbar-thumb {
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  border-radius: 10px;
+}
+
+.ProfileUserDashborad .NewPopup h2 {
+  padding: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #b3b3b3;
+}
+
+.ProfileUserDashborad .NewPopup form {
+  margin: 20px;
+  padding: 20px 40px;
+  border-radius: 20px;
+  background-color: #f7fafc;
+  box-shadow: 0px 0px 11px -7px black;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput {
+  padding: 5px 0px;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput span {
+  color: #525f7f;
+  font-size: .875rem;
+  font-weight: 600;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild {
+  box-shadow: 0 1px 11px -9px black;
+  border: 0;
+  transition: box-shadow .15s ease;
+  margin: 10px 0px;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  background-color: white;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea {
+  padding: 10px 4px;
+  position: relative;
+  left: 10px;
+  width: 100%;
+  color: #8898aa;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:focus, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:hover, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:active, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:visited, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:focus, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:hover, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:active, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:visited {
+  outline: none;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild ::placeholder {
+  color: #bcc2c8;
+  position: relative;
+  top: 1px;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild svg {
+  fill: #bcc2c8;
+  width: 25px;
+  height: 25px;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea {
+  height: 150px;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:focus, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:hover, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:active, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:visited {
+  outline: none;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate .DebutDate, .ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate .FinDate {
+  width: 100%;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input {
+  display: block;
+  margin: 20px 0px;
+  width: 70%;
+  box-shadow: 0px 0px 11px -6px black !important;
+  border: none !important;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"] {
+  display: block;
+  position: relative;
+  padding: 8px 25px;
+  font-size: 1rem;
+  font-family: monospace;
+  border: 1px solid #8292a2;
+  border-radius: 0.25rem;
+  background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E") right 1rem center no-repeat;
+  cursor: pointer;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"]:focus {
+  outline: none;
+  border-color: #3acfff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-month-field:hover,
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-day-field:hover,
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-year-field:hover {
+  background: rgba(0, 120, 250, 0.1);
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-text {
+  opacity: 0;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-clear-button,
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-inner-spin-button {
+  display: none;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 2.5rem;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  cursor: pointer;
+  color: #0078fa;
+  background: #0078fa;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"]:hover::-webkit-calendar-picker-indicator {
+  opacity: 0.05;
+}
+
+.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.15;
+}
+
+.ProfileUserDashborad .NewPopup form .CoverImg .AddImg {
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 20px 20px 0px;
+  cursor: pointer;
+  width: 25%;
+  text-align: center;
+  object-fit: cover;
+}
+
+.ProfileUserDashborad .NewPopup form .CoverImg .AddImg svg {
+  width: 50px;
+  height: 40px;
+  fill: black;
+}
+
+.ProfileUserDashborad .NewPopup form .CoverImg .AddImg img {
+  width: 100px;
+  height: 100px;
+}
+
+.ProfileUserDashborad .NewPopup form .LesImgs {
+  display: flex;
+}
+
+.ProfileUserDashborad .NewPopup form .LesImgs .AddImg {
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px 20px 20px 0px;
+  cursor: pointer;
+  width: 20%;
+  text-align: center;
+  object-fit: cover;
+}
+
+.ProfileUserDashborad .NewPopup form .LesImgs .AddImg svg {
+  width: 50px;
+  height: 40px;
+  fill: black;
+}
+
+.ProfileUserDashborad .NewPopup form .LesImgs .AddImg img {
+  width: 100px;
+  height: 100px;
+}
+
+.ProfileUserDashborad .NewPopup form .v-select > .v-input__control > .v-input__slot {
+  background-color: white;
+  border-radius: 0.375rem;
+  padding: 0px 10px;
+  border: none !important;
+}
+
+.ProfileUserDashborad .NewPopup button {
+  padding: 5px 30px;
+  border-radius: 5px;
+  background-color: #5e72e4;
+  color: white;
+  margin: 30px 30px 50px 30px;
+}
+
+.ProfileUserDashborad .BlackPage {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 200;
+}
+
+.ProfileUserDashborad .userDashBoard {
+  position: relative;
+  margin-top: -6rem !important;
+  margin: 0px 30px;
+}

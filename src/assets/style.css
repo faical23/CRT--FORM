@@ -1,0 +1,30 @@
+.buttonNavigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.buttonNavigation .UserDashLogo {
+  width: 100%;
+  margin: 10% 0%;
+}
+
+.buttonNavigation .UserDashLogo img {
+  margin-left: 30%;
+}
+
+.buttonNavigation .navgationLists {
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: gray;
+}
+/*# sourceMappingURL=style.css.map */
+
+.userDashBoard{
+  padding: 20px 20px;
+  background-color:red  !important;
+}
