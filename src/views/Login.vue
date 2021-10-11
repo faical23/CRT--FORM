@@ -81,7 +81,6 @@ export default {
 
           sessionStorage.setItem("user_id", decoded._id)
           sessionStorage.setItem("token", response.data.token)
-          sessionStorage.setItem("userPass", this.password)
           this.$router.push({ path: `/profile/${decoded._id}` });
           })
           .catch(err => {

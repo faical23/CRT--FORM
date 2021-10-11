@@ -48,6 +48,35 @@
                         <textarea placeholder="écrivez-lui votre description"> </textarea>
                     </div>
                 </div>
+                <l-map
+                    ref="map"
+                    @click="onMapClick"
+                    :zoom="zoom"
+                    style="height: 300px; margin-bottom: 3%"
+                    :center="[
+                        position.lat || userLocation.lat || defaultLocation.lat,
+                        position.lng || userLocation.lng || defaultLocation.lng,
+                    ]"
+                    >
+                    <l-tile-layer
+                        :url="tileProvider.url"
+                        :attribution="tileProvider.attribution"
+                    />
+                    <l-marker
+                        v-if="position.lat && position.lng"
+                        visible
+                        draggable
+                        :icon="icon"
+                        :lat-lng.sync="position"
+                        @dragstart="dragging = true"
+                        @dragend="dragging = false"
+                    >
+                        <l-tooltip
+                        :content="tooltipContent"
+                        :options="{ permanent: true }"
+                        />
+                    </l-marker>
+                </l-map>
             </form>
             <button v-if="NewOFFRE" >Ajouter</button>
             <button v-if="UpdateOFFRE">Modifier</button>
@@ -56,42 +85,30 @@
 </template>
 
 <script>
+import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
+import { icon } from "leaflet";
 export default {
-    props:["PropsDataFromOffers"],
+props: {
+    PropsDataFromOffers:Object,
+    value: {
+      type: Object,
+      required: true,
+    },
+    defaultLocation: {
+      type: Object,
+      default: () => ({
+        lat: 30.425493,
+        lng: -9.600704,
+      }),
+    },
+  },
   data() {
       return {
             NewOFFRE:false,
             UpdateOFFRE:false,
             ShowOFFRE:false,
             RowClicked:'',
-            itemsOne: [
-            "Hôtel",
-            "Restaurant",
-            "Guide touristique / Accompagnateur",
-            "Transport touristique",
-            "Parc d'attractions et loisirs",
-            "Parc de jeux",
-            "Bazariste/artisan",
-            "Agence de voyages",
-            "Evénement",
-            "Autre",
-            ],
-            valueItemsOne: ["Hôtel"],
-            itemsTwo: [
-            "Wifi gratuit",
-            "Center de fitness",
-            "Center spa et bien-être",
-            "Piscine",
-            "Médecin sur demande",
-            "Restaurant",
-            "Café",
-            "Lounge bar",
-            "Kids club",
-            "Salles de conférence",
-            "Sallon de beauté",
-            "Autre",
-            ],
-            valueItemsTwo: ["Wifi gratuit"],
+
             itemsLocalisation:[
                 'AGADIR',
                 'AOURIR',
@@ -109,12 +126,68 @@ export default {
                 'TIZNIT'
             ],
             ValueItemLocalisation:'AGADIR',
-            itemsServices:[
-                'BIEN ETRE',
-                'SHOPPING'
-            ],
             ValueItemServices:'BIEN ETRE',
             ImgCover:'',
+             characterLeft: 0,
+    loading: false,
+    userLocation: {},
+    icon: icon({
+      iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+      iconUrl: require("leaflet/dist/images/marker-icon.png"),
+      shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+    }),
+    position: {},
+    address: "",
+    tileProvider: {
+      attribution:
+        '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    },
+    zoom: 10,
+    dragging: false,
+
+    valid: false,
+    name: "",
+    nameRules: [(v) => !!v || "Ce champ est obligatoire"],
+    email: "",
+    emailRules: [
+      (v) => !!v || "Ce champ est obligatoire",
+      (v) => /.+@.+\..+/.test(v) || "Adresse e-mail non valide",
+    ],
+    select: null,
+    checkbox: false,
+
+
+    valueItemsTwo: ["Wifi gratuit"],
+
+    FullName: "",
+    fullNameRules: [],
+    Tel: "",
+    TelRules: [],
+    Poste: "",
+    posteRules: [],
+
+    siteWeb: "",
+    siteWebRules: [],
+
+    facebook: "",
+    facebookRules: [],
+
+    instagram: "",
+    instagramRules: [],
+
+    hotelImgRules: [
+      (value) =>
+        !value ||
+        value.size < 1000000 ||
+        "la taille de l'image ne doit pas depasser 1mo",
+    ],
+
+    Description: "",
+    decriptionRules: [
+
+    ],
+
       }
 
   },
@@ -134,11 +207,79 @@ export default {
         else if(this.PropsDataFromOffers.Condition == "Show"){
             this.ShowOFFRE = true
         }
-    }
+    },
+    
+
+    async getAddress() {
+      this.loading = true;
+      let address = "Unresolved address";
+      try {
+        const { lat, lng } = this.position;
+        const result = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+        );
+        if (result.status === 200) {
+          const body = await result.json();
+          address = body.display_name;
+        }
+      } catch (e) {
+        console.error("Reverse Geocode Error->", e);
+      }
+      this.loading = false;
+
+      console.log(this.position.lat);
+      console.log(this.position.lng);
+      return address;
+    },
+    onMapClick(value) {
+      // place the marker on the clicked spot
+      this.position = value.latlng;
+    },
+    getUserPosition() {
+      if (navigator.geolocation) {
+        // get GPS position
+        navigator.geolocation.getCurrentPosition((pos) => {
+          // set the user location
+          this.userLocation = {
+            lat: pos.coords.latitude,
+            lng: pos.coords.longitude,
+          };
+        });
+      }
+  }
   },
   mounted(){
       this.CheckCondition()
-  }
+  },
+    components: {
+    LMap,
+    LTileLayer,
+    LMarker,
+    LTooltip,
+    
+  },
+    watch: {
+    position: {
+      deep: true,
+      async handler(value) {
+        this.address = await this.getAddress();
+        this.$emit("input", { position: value, address: this.address });
+      },
+    },
+  },
+  computed: {
+    tooltipContent() {
+      if (this.dragging) return "...";
+      if (this.loading) return "Loading...";
+      return `<strong>${this.address.replace(
+        ",",
+        "<br/>"
+      )}</strong> <hr/><strong>lat:</strong> ${
+        this.position.lat
+      }<br/> <strong>lng:</strong> ${this.position.lng}`;
+    },
+  },
+  
 }
 </script>
 

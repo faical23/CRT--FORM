@@ -910,3 +910,24 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   margin-top: -6rem !important;
   margin: 0px 30px;
 }
+
+.ErrorFaild {
+  color: red !important;
+  font-weight: 500 !important;
+  display: block;
+}
+
+.Checkboxzone {
+  display: flex;
+  align-items: center;
+  padding: 30px 0px !important;
+}
+
+.Checkboxzone .CheckboxWebSite {
+  width: 25px !important;
+  height: 25px !important;
+  border-radius: 3px;
+  box-shadow: 0px 0px 11px -6px black;
+  margin-right: 20px;
+  cursor: pointer;
+}
