@@ -1,7 +1,7 @@
 <template>
   <div class="ProfileUserDashborad">
     <div class="BlackPage" v-if="ShowPopupNewShopping || ShowPopupNewExursion || ShowPopupNewOffer" @click='RemovePopup'></div>
-    <PopupNewShpping v-if="ShowPopupNewShopping" :PropsDataFromShppingToPopup='PropsDataFromShppingToPopup' />
+    <PopupNewShpping v-if="ShowPopupNewShopping" :PropsDataFromShppingToPopup='PropsDataFromShppingToPopup' @ClosePopup='ShowPopupNewShopping =false'/>
     <PopupNewExursion v-if="ShowPopupNewExursion" :PropsDataFromExursion="PropsDataFromExursion"/>
     <PopupNewOffer v-if="ShowPopupNewOffer" :PropsDataFromOffers="PropsDataFromOffers" />
     <div class="SideBareZone">

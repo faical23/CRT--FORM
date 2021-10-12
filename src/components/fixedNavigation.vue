@@ -41,14 +41,6 @@
       <p>Connexion</p>
     </router-link>
 
-    <v-progress-circular
-      :size="70"
-      :width="10"
-      color="purple"
-      indeterminate
-      class="ml-10"
-      v-if="showFixedNav"
-    ></v-progress-circular>
   </div>
 </template>
 

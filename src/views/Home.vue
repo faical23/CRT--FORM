@@ -1,5 +1,7 @@
 <template>
-  <div class="userDashBoard">
+  <div class="userDashBoard ">
+    <div  v-if="SpinnerWork" class="loader">Loading...</div>
+    <div v-if="SpinnerWork" class="BlackPage"></div>
     <v-row no-gutters>
       <v-col
         cols="12"
@@ -37,7 +39,7 @@
                 <input type="checkbox" class="CheckboxWebSite" @click="ShowInputWebsite ? ShowInputWebsite = false : ShowInputWebsite = true">
                 <span>Avez-vous un site web ?</span>
             </div>
-            <div v-if="ShowInputWebsite" class="ZoneInput">
+            <div v-if="ShowInputWebsite"  class="ZoneInput">
                 <span>Website</span>
                 <div class="InputFaild">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2s.07-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/></svg>
@@ -45,7 +47,7 @@
                 </div>
                 <span  v-if="SubmitInscription && WebsiteNoValide === true "  class="ErrorFaild">Website invalide</span>
             </div>
-              <div class="ZoneInput">
+            <div class="ZoneInput">
                 <span>Facebook</span>
                 <div class="InputFaild">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z" /></svg>
@@ -83,7 +85,7 @@
                 ></v-select>
                 <span v-if="SubmitInscription && valueItemsTwo.length == 0 "  class="ErrorFaild" >Selectionner en mois une service</span>
             </div>
-              <div class="ZoneInput">
+            <div class="ZoneInput">
                 <span>Nom de responsable</span>
                 <div class="InputFaild">
                     <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24" y="0"/></g><g><g><rect height="1.5" width="4" x="14" y="12"/><rect height="1.5" width="4" x="14" y="15"/><path d="M20,7h-5V4c0-1.1-0.9-2-2-2h-2C9.9,2,9,2.9,9,4v3H4C2.9,7,2,7.9,2,9v11c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V9 C22,7.9,21.1,7,20,7z M11,7V4h2v3v2h-2V7z M20,20H4V9h5c0,1.1,0.9,2,2,2h2c1.1,0,2-0.9,2-2h5V20z"/><circle cx="9" cy="13.5" r="1.5"/><path d="M11.08,16.18C10.44,15.9,9.74,15.75,9,15.75s-1.44,0.15-2.08,0.43C6.36,16.42,6,16.96,6,17.57V18h6v-0.43 C12,16.96,11.64,16.42,11.08,16.18z"/></g></g></svg>
@@ -112,17 +114,17 @@
                 </div>
             </div>
             <div class="ZoneInput">
-                <span>Localisation</span>
-                <div class="InputFaild">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                    <input type="text" placeholder="Localisation" v-model="Localisation__Faild">
-                </div>
+                    <span>Localisation</span>
+                    <v-select
+                        :items="itemsLocalisation"
+                        v-model="ValueItemLocalisation"
+                    ></v-select>
             </div>
             <div class="ZoneInput">
                 <span>Veuillez déterminer un prix attractif (en DH)</span>
                 <div class="InputFaild">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-                    <input type="text" placeholder="0 DH" v-model="PriceAttractif__Faild">
+                    <input type="number" placeholder="0 DH" v-model="PriceAttractif__Faild">
                 </div>
             </div>
             <div class="ZoneInput">
@@ -144,7 +146,7 @@
             </div>
             <div class="ZoneInput CoverImg">
                   <span>couverture image</span>
-                  <input type="file" hidden ref="ImgCover" @change="ImgCoverChanged()">
+                  <input type="file" accept=".jpg,.jpeg" hidden ref="ImgCover" @change="ImgCoverChanged()">
                   <div class="AddImg" @click="$refs.ImgCover.click()">
                       <img v-if="ImgCover != '' " :src="ImgCover" alt="">
                       <svg  v-if="ImgCover == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
@@ -154,10 +156,10 @@
             <div class="ZoneInput ">
                   <span>Les images</span>
                   <div class="LesImgs ">
-                    <input type="file" hidden ref="Img1" @change="Img1Changed()">
-                    <input type="file" hidden ref="Img2" @change="Img2Changed()">
-                    <input type="file" hidden ref="Img3" @change="Img3Changed()">
-                    <input type="file" hidden ref="Img4" @change="Img4Changed()">
+                    <input type="file" accept=".jpg,.jpeg" hidden ref="Img1" @change="Img1Changed()">
+                    <input type="file" accept=".jpg,.jpeg" hidden ref="Img2" @change="Img2Changed()">
+                    <input type="file" accept=".jpg,.jpeg" hidden ref="Img3" @change="Img3Changed()">
+                    <input type="file" accept=".jpg,.jpeg" hidden ref="Img4" @change="Img4Changed()">
                     <div class="AddImg" @click="$refs.Img1.click()">
                         <img v-if="Img1 != '' " :src="Img1" alt="">
                         <svg  v-if="Img1 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
@@ -214,7 +216,7 @@
                   />
                 </l-marker>
             </l-map>
-            <button class="VldBtn" @click="SubmitIncriptionFunction()">Valider</button>
+            <button class="VldBtn" @click.prevent="SubmitIncriptionFunction()">Valider</button>
           </form>
       </div>
       </v-col>
@@ -230,6 +232,7 @@ import fixednav from "../components/fixedNavigation.vue";
 import { LMap, LMarker, LTileLayer, LTooltip } from "vue2-leaflet";
 import { icon } from "leaflet";
 import UploadImages from "vue-upload-drop-images"
+import Swal from 'sweetalert2'
 
 export default {
   props: {
@@ -259,12 +262,11 @@ export default {
     Services__Faild:[],
     NomResponsable__Faild:'',
     Téléphone__Faild:'',
-    PosteOccupé__Faild:'',
-    Adresse__Faild:'',
-    Localisation__Faild:'',
-    PriceAttractif__Faild:'',
-    Password__Faild:'',
+    PriceAttractif__Faild:0,
     CondirfPassword__Faild:'',
+    Password__Faild:'',
+    Adresse__Faild:'',
+    PosteOccupé__Faild:'',
     ImgCover:'',
     Img1 :'',
     Img2:'',
@@ -304,7 +306,24 @@ export default {
     FacebookNoValide:false,
     InstagrmaNoValide:false,
     WebsiteNoValide:false,
-
+    itemsLocalisation:[
+                'AGADIR',
+                'AOURIR',
+                'BENSARGAW',
+                'CHTOUK AIT BAHA',
+                'IMESOUIANE',
+                'IMOUZZER',
+                'INZEGANE',
+                'TAFRAOUT',
+                'TAGHAZOUT',
+                'TALIOUINE',
+                'TAROUDANT',
+                'TATA',
+                'TIOUT',
+                'TIZNIT'
+    ],
+    ValueItemLocalisation:"AGADIR",
+    SpinnerWork:false,
 
 
 
@@ -386,9 +405,6 @@ export default {
 
     InitialPrice: "",
     InitialPriceRules: [],
-
-    Localisation: "AGADIR",
-    itemsLocalisation: [],
     localisationRules: [],
   }),
 
@@ -449,26 +465,134 @@ export default {
     },
     SubmitIncriptionFunction(){
       this.SubmitInscription = true
-        if(this.NomOrganisme__Faild !== '' && this.Email__Faild !== '' &&
+      if(this.NomOrganisme__Faild !== '' && this.Email__Faild !== '' &&
           this.EmailExist === false && /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.Email__Faild) &&
           this.valueItemsOne.length > 0 && this.valueItemsTwo.length > 0 &&
           this.Password__Faild !== '' && this.CondirfPassword__Faild !== '' &&
-         this.CondirfPassword__Faild === this.Password__Faild && 
-         this.Description__Faild.length > 200){
-          console.log("all is aright")
+          this.CondirfPassword__Faild === this.Password__Faild && 
+          this.Description__Faild.length > 200 && this.ImgCover != '' && 
+          this.Img1 != ''){
 
+            if( this.ImgCover != '' && this.$refs.ImgCover.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image couverture ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if(this.Img1 != '' && this.$refs.Img1.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 1 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if( this.Img2 != '' && this.$refs.Img2.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 2 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if( this.Img3 != '' &&  this.$refs.Img3.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 3 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if( this.Img4 != '' &&  this.$refs.Img4.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 4 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else {
+
+                    //// GET DATA
+                    this.SpinnerWork = true
+                    const formData = new FormData();
+                    formData.append('userRole', 'ORGANISME')
+                    formData.append("NomOrganisme", this.NomOrganisme__Faild);
+                    formData.append("Email", this.Email__Faild.trimEnd());
+                    formData.append("HaveSiteweb", this.ShowInputWebsite);
+                    formData.append("UserSiteweb", this.WebSite__Faild);
+                    formData.append("Nom", this. NomResponsable__Faild);
+                    formData.append("Tel", this.Téléphone__Faild);
+                    formData.append("Post", this.PosteOccupé__Faild);
+                    formData.append("Description", this.Description__Faild);
+                    formData.append("Localisation", this.ValueItemLocalisation);
+                    formData.append("Adress", this.Adresse__Faild);
+                    formData.append("haveFacebook", this.Facbook__Faild);
+                    formData.append("haveInstagram", this.Instagram__Faild);
+                    formData.append("InitialPrice",this.PriceAttractif__Faild);
+                    formData.append("Password", this.Password__Faild);
+                    formData.append("CPassword", this.CondirfPassword__Faild);
+                    formData.append("hotelBackroungImg",this.$refs.ImgCover.files[0]);
+                    formData.append("hotelImgOne",this.$refs.Img1.files[0]);
+                    formData.append("hotelImgTwo",this.$refs.Img2.files[0]);
+                    formData.append("hotelImgTree",this.$refs.Img3.files[0]);
+                    formData.append("hotelImgFour",this.$refs.Img4.files[0]);
+                    formData.append("lat",this.position.lat ? this.position.lat : "30.425493");
+                    formData.append("lng",this.position.lng ? this.position.lng : "-9.600704");
+                    for (var i = 0; i < this.valueItemsOne.length; i++) {
+                      formData.append("Activite", this.valueItemsOne[i]);
+                    }
+                    for (var i = 0; i < this.valueItemsTwo.length; i++) {
+                      formData.append("Services", this.valueItemsTwo[i]);
+                    }
+
+                    axios
+                      .post(`${API_URL}/user/saveForm`, formData)
+                      .then(() => {
+                        this.SpinnerWork = false
+                        Swal.fire({
+                              position: 'top-end',
+                              icon: 'success',
+                              title: 'All is aright',
+                              showConfirmButton: false,
+                              timer: 5000
+                        })
+                        this.$router.push({ path: `/login` });
+                      })
+                      .catch((e) => {
+                        console.log(e.response)
+                        if (e.response.data.error) {
+                          this.SpinnerWork = false
+                            Swal.fire({
+                              position: 'top-end',
+                              icon: 'error',
+                              title: e.response.data.error,
+                              showConfirmButton: false,
+                              timer: 5000
+                            })
+                        }
+                      });
+            }
         }
         else{
             console.log("some faild is emty")
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Error in some faild',
-              showConfirmButton: false,
-              timer: 12500
-          })
+              Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'Some Faild is empty',
+                showConfirmButton: false,
+                timer: 5000
+              })
         }
     },
+
 
     async getAddress() {
       this.loading = true;

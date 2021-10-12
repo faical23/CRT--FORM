@@ -2,13 +2,10 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   outline: none !important;
 }
 
-.userDashBoard {
-  padding: 20px 20px;
-}
-
 .userDashBoard .buttonNavigation {
   text-align: center;
   width: 70%;
+  margin: 20px 20px;
 }
 
 .userDashBoard .buttonNavigation .UserDashLogo img {
@@ -104,6 +101,8 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
 }
 
 .userDashBoard .FormInscription {
+  margin: 20px 20px;
+  position: relative;
   padding: 20px 40px;
   border-radius: 20px;
   background-color: #f7fafc;
@@ -930,4 +929,66 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   box-shadow: 0px 0px 11px -6px black;
   margin-right: 20px;
   cursor: pointer;
+}
+
+.LoginTanmirtLogo {
+  position: relative;
+  top: 100px;
+}
+
+.LoginTanmirtLogo img {
+  width: 100%;
+}
+
+.BlackPage {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed !important;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+}
+
+.loader {
+  color: #ffffff;
+  font-size: 25px;
+  margin: 100px auto;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: load4 1.3s infinite linear;
+  transform: translateZ(0);
+  position: fixed;
+  z-index: 200000000;
+  left: 50%;
+  top: 30%;
+}
+
+@keyframes load4 {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
 }

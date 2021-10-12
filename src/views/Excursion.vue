@@ -473,11 +473,9 @@ export default {
       formData.append("userRole", this.UserRole);
       formData.append("Adress", this.Adress);
       formData.append("fromOrg", this.$route.params.userID)
-
       formData.append("haveFacebook", this.facebook);
       formData.append("haveInstagram", this.instagram);
       formData.append("InitialPrice", this.InitialPrice);
-
       formData.append("Password", this.Password);
       formData.append("CPassword", this.RPassword);
 
