@@ -545,7 +545,7 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   text-align: start;
 }
 
-.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer {
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .DESACTIVER {
   padding: 3px 10px;
   width: 40%;
   border-radius: 5px;
@@ -557,11 +557,11 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   transition-duration: 2s;
 }
 
-.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active:hover, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer:hover {
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Active:hover, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer:hover, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .DESACTIVER:hover {
   bottom: 2px;
 }
 
-.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer {
+.ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .Supprimer, .ProfileUserDashborad .ContentZone .ContentDashboardUser .TableZone .TableData .BodyTable .DESACTIVER {
   background-color: #f5365c;
 }
 

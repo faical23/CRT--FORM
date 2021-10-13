@@ -1,8 +1,8 @@
 <template>
     <div class="NewPopup">
-            <h2  v-if="NewShopping">Ajouter un bien etre / shopping</h2>
-            <h2  v-if="UpdateShopping">Modifier le bien etre / shopping</h2>
-            <h2  v-if="ShowShopping"> aperçu le bien etre / shopping</h2>
+            <h2  v-if="NewShopping">Ajouter shopping</h2>
+            <h2  v-if="UpdateShopping">Modifier shopping</h2>
+            <h2  v-if="ShowShopping"> aperçu  shopping</h2>
             <form>
                 <div class="ZoneInput">
                     <span>Nom de l'organisation</span>
@@ -81,14 +81,6 @@
                     <v-select
                         :items="itemsLocalisation"
                         v-model="ValueItemLocalisation"
-                         :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''" 
-                    ></v-select>
-                </div>
-                 <div class="ZoneInput">
-                    <span>Services</span>
-                    <v-select
-                        :items="itemsServices"
-                        v-model="ValueItemServices"
                          :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''" 
                     ></v-select>
                 </div>
@@ -265,37 +257,10 @@ export default {
     FacebookNoValide:false,
     InstagrmaNoValide:false,
     WebsiteNoValide:false,
-
-    ////////////////////////
-            itemsOne: [
-            "Hôtel",
-            "Restaurant",
-            "Guide touristique / Accompagnateur",
-            "Transport touristique",
-            "Parc d'attractions et loisirs",
-            "Parc de jeux",
-            "Bazariste/artisan",
-            "Agence de voyages",
-            "Evénement",
-            "Autre",
-            ],
-            valueItemsOne: ["Hôtel"],
-            itemsTwo: [
-            "Wifi gratuit",
-            "Center de fitness",
-            "Center spa et bien-être",
-            "Piscine",
-            "Médecin sur demande",
-            "Restaurant",
-            "Café",
-            "Lounge bar",
-            "Kids club",
-            "Salles de conférence",
-            "Sallon de beauté",
-            "Autre",
-            ],
-            valueItemsTwo: ["Wifi gratuit"],
-            itemsLocalisation:[
+    ValueItemLocalisation :'AGADIR',
+    UserRole:'SHOPPING',
+    Password: "promovisiteagadir",
+                itemsLocalisation:[
                 'AGADIR',
                 'AOURIR',
                 'BENSARGAW',
@@ -311,18 +276,6 @@ export default {
                 'TIOUT',
                 'TIZNIT'
             ],
-            ValueItemLocalisation:'AGADIR',
-            itemsServices:[
-                'BIEN ETRE',
-                'SHOPPING'
-            ],
-            ValueItemServices:'BIEN ETRE',
-            ImgCover:'',
-            Img1 :'',
-            Img2:'',
-            Img3:'',
-            Img4:'',
-  Password: "promovisiteagadir",
     // PasswordeRules: [(v) => !!v || "Ce champ est obligatoire"],
 
     RPassword: "promovisiteagadir",
@@ -391,13 +344,6 @@ export default {
     decriptionRules: [
 
     ],
-
-    // Localisation: "",
-    // localisationRules: [
-    //   v => !!v || 'localisation is required'
-    // ],
-
-
   }),
   watch: {
     position: {
@@ -459,6 +405,7 @@ export default {
         }
     },
     AddNewShoppingFunction(){
+      console.log(this.PropsDataFromShppingToPopup.IDRowClciked)
       this.SubmitInscription = true
       if(this.NomOrganisme__Faild !== '' && this.Email__Faild !== '' &&
           this.EmailExist === false && /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.Email__Faild) &&
@@ -476,7 +423,7 @@ export default {
       formData.append("haveInstagram", this.Instagram__Faild);
       formData.append("Localisation",this.ValueItemLocalisation);
       formData.append("InitialPrice",this.PriceAttractif__Faild);
-      formData.append("userRole",this.ValueItemServices);
+      formData.append("userRole",this.UserRole);
       formData.append("hotelBackroungImg",this.ImgCover);
       formData.append("hotelImgOne",this.Img1);
       formData.append("hotelImgTwo",this.Img2);
@@ -538,6 +485,7 @@ export default {
           this.Description__Faild.length > 200&& this.ImgCover != '' && 
           this.Img1 != ''){
       //// GET DATA
+                  //// GET DATA
       const formData = new FormData();
       formData.append("NomOrganisme", this.NomOrganisme__Faild);
       formData.append("Email", this.Email__Faild.trimEnd());
@@ -547,14 +495,18 @@ export default {
       formData.append("Description", this.Description__Faild);
       formData.append("haveFacebook", this.Facbook__Faild);
       formData.append("haveInstagram", this.Instagram__Faild);
-      formData.append("Localisation",this.PriceAttractif__Faild);
-      formData.append("haveInstagram",this.ValueItemLocalisation);
-      formData.append("userRole",this.ValueItemServices);
+      formData.append("Localisation",this.ValueItemLocalisation);
+      formData.append("InitialPrice",this.PriceAttractif__Faild);
+      formData.append("userRole",this.UserRole);
       formData.append("hotelBackroungImg",this.ImgCover);
       formData.append("hotelImgOne",this.Img1);
       formData.append("hotelImgTwo",this.Img2);
       formData.append("hotelImgTree",this.Img3);
       formData.append("hotelImgFour",this.Img4);
+      formData.append("hotelImgTree",this.Img3);
+      formData.append("hotelImgFour",this.Img4);
+      formData.append("Password", this.Password);
+      formData.append("CPassword", this.RPassword);
       formData.append("lat",this.position.lat ? this.position.lat : "30.425493");
       formData.append("lng",this.position.lng ? this.position.lng : "-9.600704");
       for (var i = 0; i < this.valueItemsOne.length; i++) {
@@ -598,6 +550,9 @@ export default {
                 timer: 5000
               })
         }
+    },
+    GetUserDataIfclickRow(){
+      console.log("ghhh")
     },
     
 
@@ -647,9 +602,10 @@ export default {
     LTooltip,
     
   },
-    mounted() {
+  mounted() {
     this.getUserPosition();
     this.CheckCondition()
+    this.GetUserDataIfclickRow()
   },
 };
 </script>

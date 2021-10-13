@@ -1,14 +1,16 @@
 <template>
   <div class="ProfileUserDashborad">
-    <div class="BlackPage" v-if="ShowPopupNewShopping || ShowPopupNewExursion || ShowPopupNewOffer" @click='RemovePopup'></div>
+    <div class="BlackPage" v-if="ShowPopupNewBienEtre || ShowPopupNewShopping || ShowPopupNewExursion || ShowPopupNewOffer" @click='RemovePopup'></div>
     <PopupNewShpping v-if="ShowPopupNewShopping" :PropsDataFromShppingToPopup='PropsDataFromShppingToPopup' @ClosePopup='ShowPopupNewShopping =false'/>
-    <PopupNewExursion v-if="ShowPopupNewExursion" :PropsDataFromExursion="PropsDataFromExursion"/>
-    <PopupNewOffer v-if="ShowPopupNewOffer" :PropsDataFromOffers="PropsDataFromOffers" />
+    <PopupNewExursion v-if="ShowPopupNewExursion" :PropsDataFromExursion="PropsDataFromExursion"  @ClosePopup='ShowPopupNewExursion =false'/>
+    <PopupNewOffer v-if="ShowPopupNewOffer" :PropsDataFromOffers="PropsDataFromOffers"  @ClosePopup='ShowPopupNewOffer =false' />
+    <PopupNewBienEtre v-if="ShowPopupNewBienEtre" :PropsDataFromBineEtre="PropsDataFromBineEtre"  @ClosePopup='ShowPopupNewBienEtre =false' />
     <div class="SideBareZone">
         <SIdeBare  @SwitchSideBare='SwitchSideBare'/>
     </div>
     <div class="ContentZone">
         <BienEtreShpping  v-if="PageBienEtreShpping"  @OpenNewShopping='ShoppingFunction' />
+        <BienEtre v-if="PageBienEtre"  @OpenNewBienEtre='BienEtreFunction' />
         <Excursion   v-if="PageExcursion" @OpenNewExursion='ExursionFunction' />
         <Offre   v-if="PageOffre"  @OpenNewOffer='OfferFunction' />
         <FormUpdate v-if="VotreInformation"/>
@@ -29,6 +31,7 @@ import { icon } from "leaflet";
 //// LAYOUT 
 import SIdeBare from "../components/SideBarUser.vue"
 import BienEtreShpping from "../components/BineEtreShpping.vue"
+import BienEtre from "../components/BienEtre.vue"
 import Excursion from "../components/Excursion.vue"
 import Offre from "../components/Offre.vue"
 import FormUpdate from "../components/UpdateProfileUser.vue"
@@ -36,6 +39,7 @@ import Configuration from "../components/Confugiration.vue"
 import PopupNewShpping from "../components/PopupNewShpping.vue"
 import PopupNewExursion from "../components/PoupNewExursion.vue"
 import PopupNewOffer from "../components/PopupNewOffre.vue"
+import PopupNewBienEtre from "../components/PopupNewBienEtre.vue"
 
 
 export default {
@@ -69,6 +73,9 @@ export default {
     PropsDataFromExursion: '',
     ShowPopupNewOffer:false,
     PropsDataFromOffers: '',
+    PageBienEtre:false,
+    ShowPopupNewBienEtre:false,
+    PropsDataFromBineEtre:'',
 
 //////////////////////////////////
     characterLeft: 0,
@@ -205,7 +212,9 @@ export default {
     Configuration,
     PopupNewShpping,
     PopupNewExursion,
-    PopupNewOffer 
+    PopupNewOffer ,
+    BienEtre,
+    PopupNewBienEtre
   },
   created() {
       this.Password = sessionStorage.getItem('userPass')
@@ -307,6 +316,7 @@ export default {
         this.PageOffre = false
         this.VotreInformation = false
         this.PageConfiguration = false
+        this.PageBienEtre = false
       if(PageSwitch == "BienEtreShopping")
         this.PageBienEtreShpping = true
       else if(PageSwitch == "Excursion")
@@ -317,12 +327,14 @@ export default {
         this.VotreInformation = true
       else if(PageSwitch == "Confugiration")
         this.PageConfiguration = true
-
+      else if(PageSwitch == "BienEtre")
+        this.PageBienEtre = true
     },
     RemovePopup(){
       this.ShowPopupNewShopping = false
       this.ShowPopupNewExursion  = false
       this.ShowPopupNewOffer = false
+      this.ShowPopupNewBienEtre =  false
     },
     ShoppingFunction(Condition){
       this.ShowPopupNewShopping = true
@@ -335,6 +347,10 @@ export default {
     OfferFunction(Condition){
       this.ShowPopupNewOffer = true
       this.PropsDataFromOffers= Condition
+    },
+    BienEtreFunction(Condition){
+      this.ShowPopupNewBienEtre = true
+      this.PropsDataFromBineEtre = Condition
     },
     
 

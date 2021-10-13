@@ -2,12 +2,12 @@
     <div class="ContentDashboardUser">
         <div class="Hero">
             <span class="Mask"></span>
-                <h1>THIS IS EXCURSION ?</h1>
+            <h1>BIEN ETRE</h1>
         </div>
         <div class="TableZone">
             <div class="Title">
                 <h3>Lorem Lorem</h3>
-                <button @click='ElementChoose.Condition="New",$emit("OpenNewExursion",ElementChoose)'>Ajouter un excursion</button>
+                <button @click='ElementChoose.Condition="New",$emit("OpenNewBienEtre",ElementChoose)'>Ajouter un bien etre</button>
             </div>
             <div class="BareSearch">
                 <input type="text" placeholder="Enter le nom de l'organisme">
@@ -51,31 +51,31 @@
 import axios from "axios";
 
 export default {
-    emit:['OpenNewExursion'],
+    emit:['OpenNewShopping'],
     data() {
       return {
       Users:[
 
       ],
-        ElementChoose:{
-            Condition:'',
-            IDRowClciked:''
-        },
+      ElementChoose:{
+          Condition:'',
+          IDRowClciked:''
+      },
     }
 
   },
   methods: {
-    GetExcursion(){
-        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserExcursions/${this.$route.params.userID}`)
-        .then((response) => {
-            console.log(response.data.length)
-            console.log("UserBenetre" , response)
-            this.Users = response.data
-        });
-        }
-    },
+GetDataBienEtre(){
+    axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserBienEtres/${this.$route.params.userID}`)
+      .then((response) => {
+        console.log(response.data.length)
+        console.log("UserBenetre" , response)
+        this.Users = response.data
+      });
+    }
+  },
   mounted() {
-      this.GetExcursion()
+      this.GetDataBienEtre()
   }
 }
 </script>

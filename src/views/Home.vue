@@ -83,7 +83,7 @@
                   chips
                   multiple
                 ></v-select>
-                <span v-if="SubmitInscription && valueItemsTwo.length == 0 "  class="ErrorFaild" >Selectionner en mois une service</span>
+                  <span v-if="SubmitInscription && valueItemsOne.length == 0 "  class="ErrorFaild" >Selectionner en mois une catégorie</span>
             </div>
             <div class="ZoneInput">
                 <span>Nom de responsable</span>

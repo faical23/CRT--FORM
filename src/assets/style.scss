@@ -486,7 +486,7 @@ textarea,input,textarea{
                             letter-spacing: 1px;
                             text-align: start;
                         }
-                        .Active,.Supprimer{
+                        .Active,.Supprimer,.DESACTIVER{
                             padding:3px 10px;
                             width:40%;
                             border-radius:5px;
@@ -500,7 +500,7 @@ textarea,input,textarea{
                                 bottom:2px;
                             }
                         }
-                        .Supprimer{
+                        .Supprimer,.DESACTIVER{
                             background-color: #f5365c;
                         }
                         .Active{
