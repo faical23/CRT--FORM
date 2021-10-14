@@ -609,8 +609,6 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   display: flex;
   justify-content: space-around;
   padding: 50px 0px;
-  position: relative;
-  top: 80px;
 }
 
 .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem {
@@ -1006,7 +1004,12 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
 }
 
 .VotreInfoProfile h1 {
-  top: 30px !important;
+  top: 80px !important;
+}
+
+.VotreInfoProfile .Hero .CardConfiguration {
+  position: relative;
+  top: 80px;
 }
 
 .VotreInfoProfile .Hero .CardConfiguration .CardItem {

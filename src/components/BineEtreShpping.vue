@@ -10,7 +10,7 @@
                 <button @click='ElementChoose.Condition="New",$emit("OpenNewShopping",ElementChoose)'>Ajouter un shopping</button>
             </div>
             <div class="BareSearch">
-                <input type="text" placeholder="Enter le nom de l'organisme">
+                <input type="text" placeholder="Enter le nom de l'organisme" @keyup="SearchShopping()" v-model="Search">
             </div>
             <div class="TableData">
                     <div class="HeadrTable">
@@ -20,7 +20,8 @@
                         <span>APERÇU/MODIFIER</span>
                         <span>SUPPRIMER</span>
                     </div>
-                    <div class="BodyTable" v-for="Item in Users" :key="Item">
+                    <p  v-if="Nodata" style="text-align:center;padding:30px 0px;">No Data</p>
+                    <div class="BodyTable" v-for="Item,n in Users" :key="n">
                         <span>{{Item.NomOrganisme}}</span>
                         <span>{{Item.Email}}</span>
                         <span>
@@ -62,15 +63,18 @@ export default {
           Condition:'',
           IDRowClciked:''
       },
+      Search:'',
+      Nodata : false,
     }
 
   },
   methods: {
-    GetDataShopping(){
-        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserShoppings/${this.$route.params.userID}?OrgName`)
+    GetDataShopping(SearchElement){
+        let SearchItem = ''
+        SearchElement !== "" ? SearchItem = `=${SearchElement}` : SearchItem  = ''
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserShoppings/${this.$route.params.userID}?OrgName${SearchItem}`)
       .then((response) => {
-        console.log(response.data.length)
-        console.log("UserShopping" , response)
+        response.data.length != 0 ? this.Nodata = false :  this.Nodata = true
         this.Users = response.data
       });
     },
@@ -97,16 +101,20 @@ export default {
             )
         }
         })
+    },
+    SearchShopping(){
+        let SearchElement = this.Search
+        this.GetDataShopping( SearchElement)
+        console.log(this.Search)
     }
 
   },
   mounted() {
-      this.GetDataShopping()
+      this.GetDataShopping("")
   },
   watch: {
       'RefleshTheTableShopping':function(){
-          console.log('Table changed')
-          this.GetDataShopping();
+          this.GetDataShopping("");
       }
   }
 }

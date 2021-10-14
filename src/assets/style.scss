@@ -544,8 +544,6 @@ textarea,input,textarea{
             display:flex;
             justify-content:space-around;
             padding:50px 0px;
-            position: relative;
-            top: 80px;
             .CardItem{
                 width:25%;
                 border-radius:5px;
@@ -947,10 +945,12 @@ textarea,input,textarea{
   }
   .VotreInfoProfile{
       h1{
-          top: 30px !important;
+          top: 80px !important;
       }
         .Hero{
             .CardConfiguration{
+                position: relative;
+                top: 80px;
                 .CardItem{
                     background: white !important;
                     padding:30px;

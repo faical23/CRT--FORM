@@ -310,7 +310,11 @@ export default {
   },
   methods: {
     LogoutFuntion(){
-        
+        this.$router.push({ path: `/login` });
+        localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
+        sessionStorage.removeItem(("user_id"))
+        sessionStorage.removeItem(("token"))
     },
     ClosePopup() {
       this.ShowPopupNewShopping = false
