@@ -432,6 +432,24 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   color: black !important;
 }
 
+@media screen and (max-width: 1440px) {
+  .ProfileUserDashborad .SideBareZone {
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .ProfileUserDashborad .SideBareZone {
+    padding: 30px 4px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .ProfileUserDashborad .SideBareZone {
+    width: 30%;
+  }
+}
+
 .ProfileUserDashborad .ContentZone {
   width: 100%;
   position: relative;
@@ -646,6 +664,29 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   bottom: 3px;
 }
 
+@media screen and (max-width: 1024px) {
+  .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem {
+    padding: 15px;
+  }
+  .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem svg {
+    width: 40px;
+    height: 40px;
+  }
+  .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem h5 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem {
+    display: block;
+    text-align: center;
+  }
+  .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem svg {
+    margin-top: 10px;
+  }
+}
+
 .ProfileUserDashborad .Footer {
   padding: 30px;
   display: flex;
@@ -793,6 +834,12 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   border: none !important;
 }
 
+@media screen and (max-width: 1024px) {
+  .NewPopup form .ZoneInput .ZoneDate input {
+    width: 90%;
+  }
+}
+
 .NewPopup form .ZoneInput .ZoneDate input[type="date"] {
   display: block;
   position: relative;
@@ -908,6 +955,13 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   background-color: #5e72e4;
   color: white;
   margin: 30px 30px 50px 30px;
+}
+
+@media screen and (max-width: 1024px) {
+  .NewPopup {
+    width: 80%;
+    left: 10%;
+  }
 }
 
 .ErrorFaild {
@@ -1043,6 +1097,26 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   font-size: 30px;
 }
 
+@media screen and (max-width: 1024px) {
+  .VotreInfoProfile .Hero .CardConfiguration .CardItem {
+    padding: 15px;
+  }
+  .VotreInfoProfile .Hero .CardConfiguration .CardItem svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .VotreInfoProfile .Hero .CardConfiguration .CardItem {
+    display: block;
+    text-align: center;
+  }
+  .VotreInfoProfile .Hero .CardConfiguration .CardItem svg {
+    margin-top: 10px;
+  }
+}
+
 .HeadrDashboard {
   display: flex;
   align-items: center;
@@ -1060,7 +1134,7 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
 .HeadrDashboard button {
   padding: 5px 30px;
   border-radius: 5px;
-  font-size: 23px;
+  font-size: 15px;
   font-weight: 500;
   background-color: white;
   color: #f5365c;
