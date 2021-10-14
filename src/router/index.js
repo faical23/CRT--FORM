@@ -11,6 +11,7 @@ import AdmineL from "../views/AdmineLogin"
 
 import BienEtreShop from "../views/BienEtreShopping"
 import Excursion from "../views/Excursion"
+import NotFound from "../views/NotFound"
 
 Vue.use(VueRouter)
 
@@ -64,6 +65,11 @@ const routes = [
     path: "/addExcursuin/:userID",
     name: "excursion",
     component: Excursion
+  },
+  { 
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: NotFound
   },
 ]
 

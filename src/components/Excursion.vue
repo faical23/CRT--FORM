@@ -93,7 +93,7 @@ export default {
             axios.delete(`https://www.promovisiteagadir.searchcept.co.uk/api/user/deleteThisUser/${Id}`)
             .then((response) => {
                 console.log(response)
-                this.GetExcursion()
+                this.GetExcursion("")
             });
             Swal.fire(
             'Deleted!',

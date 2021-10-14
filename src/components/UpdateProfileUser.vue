@@ -8,22 +8,22 @@
                     <div class="CardItem" @click="ShowUpdatePassword = true">
                         <div>
                             <h5>Shopping</h5>
-                            <h2>12</h2>
+                            <h2>{{ShoppingNumber}}</h2>
                         </div>
-<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
                     <div class="CardItem">
                         <div>
                             <h5>Bien Etre</h5>
-                            <h2>12</h2>
+                            <h2>{{BienEtre}}</h2>
                         </div>
-<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>
                     </div>
                     <div class="CardItem">
                         <div>
                             <h5>Excursion</h5>
-                            <h2>12</h2>
+                            <h2>{{ExcursionNumber}}</h2>
                         </div>
-<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
             </div>
             <h1>Votre Information </h1>
       </div>
@@ -252,6 +252,9 @@ export default {
   data: () => ({
 
     //// FAICAL VARIABLES
+    ExcursionNumber:'',
+    ShoppingNumber:'',
+    BienEtre:'',
     NumberCharDescription:0,
     SubmitInscription: false,
     NomOrganisme__Faild:'',
@@ -403,6 +406,20 @@ export default {
     },
   },
   methods: {
+    GetCardStatistic(){
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserBienEtres/${this.$route.params.userID}?OrgName`)
+        .then((response) => {
+          this.BienEtre = response.data.length
+        });
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserShoppings/${this.$route.params.userID}?OrgName`)
+        .then((response) => {
+          this.ShoppingNumber= response.data.length
+        });
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserExcursions/${this.$route.params.userID}?OrgName`)
+        .then((response) => {
+          this.ExcursionNumber = response.data.length
+        });
+    },
     CavuleNumberChare(){
       this.NumberCharDescription = this.Description__Faild.length
       console.log(this.NumberCharDescription)
@@ -666,6 +683,7 @@ export default {
   mounted() {
     this.getUserPosition();
     this.GetUserDataByDefault()
+    this.GetCardStatistic()
   },
 };
 </script>
