@@ -609,6 +609,8 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   display: flex;
   justify-content: space-around;
   padding: 50px 0px;
+  position: relative;
+  top: 80px;
 }
 
 .ProfileUserDashborad .ContentZone .CardConfiguration .CardItem {
@@ -659,7 +661,21 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   left: 10px;
 }
 
-.ProfileUserDashborad .NewPopup {
+.ProfileUserDashborad .BlackPage {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 200;
+}
+
+.ProfileUserDashborad .userDashBoard {
+  position: relative;
+  margin-top: -6rem !important;
+  margin: 0px 30px;
+}
+
+.NewPopup {
   box-shadow: 0 0 11px -4px black;
   position: fixed;
   z-index: 300;
@@ -674,30 +690,30 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   /* Handle */
 }
 
-.ProfileUserDashborad .NewPopup ::-webkit-scrollbar {
+.NewPopup ::-webkit-scrollbar {
   width: 10px;
   position: relative;
   top: 20px;
   border-radius: 30px;
 }
 
-.ProfileUserDashborad .NewPopup ::-webkit-scrollbar-track {
+.NewPopup ::-webkit-scrollbar-track {
   background-color: #e4e6e9;
   border-radius: 10px;
 }
 
-.ProfileUserDashborad .NewPopup ::-webkit-scrollbar-thumb {
+.NewPopup ::-webkit-scrollbar-thumb {
   background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
   border-radius: 10px;
 }
 
-.ProfileUserDashborad .NewPopup h2 {
+.NewPopup h2 {
   padding: 30px;
   padding-bottom: 10px;
   border-bottom: 1px solid #b3b3b3;
 }
 
-.ProfileUserDashborad .NewPopup form {
+.NewPopup form {
   margin: 20px;
   padding: 20px 40px;
   border-radius: 20px;
@@ -707,17 +723,17 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   overflow-y: scroll;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput {
+.NewPopup form .ZoneInput {
   padding: 5px 0px;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput span {
+.NewPopup form .ZoneInput span {
   color: #525f7f;
   font-size: .875rem;
   font-weight: 600;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild {
+.NewPopup form .ZoneInput .InputFaild {
   box-shadow: 0 1px 11px -9px black;
   border: 0;
   transition: box-shadow .15s ease;
@@ -729,7 +745,7 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   background-color: white;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea {
+.NewPopup form .ZoneInput .InputFaild input, .NewPopup form .ZoneInput .InputFaild textarea {
   padding: 10px 4px;
   position: relative;
   left: 10px;
@@ -737,41 +753,41 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   color: #8898aa;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:focus, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:hover, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:active, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild input:visited, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:focus, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:hover, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:active, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:visited {
+.NewPopup form .ZoneInput .InputFaild input:focus, .NewPopup form .ZoneInput .InputFaild input:hover, .NewPopup form .ZoneInput .InputFaild input:active, .NewPopup form .ZoneInput .InputFaild input:visited, .NewPopup form .ZoneInput .InputFaild textarea:focus, .NewPopup form .ZoneInput .InputFaild textarea:hover, .NewPopup form .ZoneInput .InputFaild textarea:active, .NewPopup form .ZoneInput .InputFaild textarea:visited {
   outline: none;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild ::placeholder {
+.NewPopup form .ZoneInput .InputFaild ::placeholder {
   color: #bcc2c8;
   position: relative;
   top: 1px;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild svg {
+.NewPopup form .ZoneInput .InputFaild svg {
   fill: #bcc2c8;
   width: 25px;
   height: 25px;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea {
+.NewPopup form .ZoneInput .InputFaild textarea {
   height: 150px;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:focus, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:hover, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:active, .ProfileUserDashborad .NewPopup form .ZoneInput .InputFaild textarea:visited {
+.NewPopup form .ZoneInput .InputFaild textarea:focus, .NewPopup form .ZoneInput .InputFaild textarea:hover, .NewPopup form .ZoneInput .InputFaild textarea:active, .NewPopup form .ZoneInput .InputFaild textarea:visited {
   outline: none;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate {
+.NewPopup form .ZoneInput .ZoneDate {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate .DebutDate, .ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate .FinDate {
+.NewPopup form .ZoneInput .ZoneDate .DebutDate, .NewPopup form .ZoneInput .ZoneDate .FinDate {
   width: 100%;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input {
+.NewPopup form .ZoneInput .ZoneDate input {
   display: block;
   margin: 20px 0px;
   width: 70%;
@@ -779,7 +795,7 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   border: none !important;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"] {
+.NewPopup form .ZoneInput .ZoneDate input[type="date"] {
   display: block;
   position: relative;
   padding: 8px 25px;
@@ -791,28 +807,28 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   cursor: pointer;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"]:focus {
+.NewPopup form .ZoneInput .ZoneDate input[type="date"]:focus {
   outline: none;
   border-color: #3acfff;
   box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-month-field:hover,
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-day-field:hover,
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-year-field:hover {
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-month-field:hover,
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-day-field:hover,
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-year-field:hover {
   background: rgba(0, 120, 250, 0.1);
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-text {
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-datetime-edit-text {
   opacity: 0;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-clear-button,
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-inner-spin-button {
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-clear-button,
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-inner-spin-button {
   display: none;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate ::-webkit-calendar-picker-indicator {
+.NewPopup form .ZoneInput .ZoneDate ::-webkit-calendar-picker-indicator {
   position: absolute;
   width: 2.5rem;
   height: 100%;
@@ -825,15 +841,15 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   background: #0078fa;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"]:hover::-webkit-calendar-picker-indicator {
+.NewPopup form .ZoneInput .ZoneDate input[type="date"]:hover::-webkit-calendar-picker-indicator {
   opacity: 0.05;
 }
 
-.ProfileUserDashborad .NewPopup form .ZoneInput .ZoneDate input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
+.NewPopup form .ZoneInput .ZoneDate input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
   opacity: 0.15;
 }
 
-.ProfileUserDashborad .NewPopup form .CoverImg .AddImg {
+.NewPopup form .CoverImg .AddImg {
   border: 1px solid #d1d1d1;
   border-radius: 5px;
   padding: 10px;
@@ -844,22 +860,22 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   object-fit: cover;
 }
 
-.ProfileUserDashborad .NewPopup form .CoverImg .AddImg svg {
+.NewPopup form .CoverImg .AddImg svg {
   width: 50px;
   height: 40px;
   fill: black;
 }
 
-.ProfileUserDashborad .NewPopup form .CoverImg .AddImg img {
+.NewPopup form .CoverImg .AddImg img {
   width: 100px;
   height: 100px;
 }
 
-.ProfileUserDashborad .NewPopup form .LesImgs {
+.NewPopup form .LesImgs {
   display: flex;
 }
 
-.ProfileUserDashborad .NewPopup form .LesImgs .AddImg {
+.NewPopup form .LesImgs .AddImg {
   border: 1px solid #d1d1d1;
   border-radius: 5px;
   padding: 10px;
@@ -870,44 +886,30 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   object-fit: cover;
 }
 
-.ProfileUserDashborad .NewPopup form .LesImgs .AddImg svg {
+.NewPopup form .LesImgs .AddImg svg {
   width: 50px;
   height: 40px;
   fill: black;
 }
 
-.ProfileUserDashborad .NewPopup form .LesImgs .AddImg img {
+.NewPopup form .LesImgs .AddImg img {
   width: 100px;
   height: 100px;
 }
 
-.ProfileUserDashborad .NewPopup form .v-select > .v-input__control > .v-input__slot {
+.NewPopup form .v-select > .v-input__control > .v-input__slot {
   background-color: white;
   border-radius: 0.375rem;
   padding: 0px 10px;
   border: none !important;
 }
 
-.ProfileUserDashborad .NewPopup button {
+.NewPopup button {
   padding: 5px 30px;
   border-radius: 5px;
   background-color: #5e72e4;
   color: white;
   margin: 30px 30px 50px 30px;
-}
-
-.ProfileUserDashborad .BlackPage {
-  background-color: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 200;
-}
-
-.ProfileUserDashborad .userDashBoard {
-  position: relative;
-  margin-top: -6rem !important;
-  margin: 0px 30px;
 }
 
 .ErrorFaild {
@@ -991,4 +993,78 @@ textarea:focus, textarea:hover, textarea:active, textarea:visited, input:focus, 
   87.5% {
     box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
+}
+
+.PoupPasswordUpdate {
+  height: auto !important;
+  top: 40% !important;
+}
+
+.PoupPasswordUpdate form {
+  height: auto;
+  overflow: hidden;
+}
+
+.VotreInfoProfile h1 {
+  top: 30px !important;
+}
+
+.VotreInfoProfile .Hero .CardConfiguration .CardItem {
+  background: white !important;
+  padding: 30px;
+}
+
+.VotreInfoProfile .Hero .CardConfiguration .CardItem h5 {
+  text-transform: uppercase !important;
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: 17px;
+  color: #525f7f !important;
+}
+
+.VotreInfoProfile .Hero .CardConfiguration .CardItem svg {
+  border-radius: 100%;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  background: #f5365c;
+  fill: white;
+}
+
+.VotreInfoProfile .Hero .CardConfiguration .CardItem:hover {
+  bottom: 3px;
+}
+
+.VotreInfoProfile .Hero .CardConfiguration .CardItem h2 {
+  font-size: 30px;
+}
+
+.HeadrDashboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  position: absolute;
+  z-index: 1000000;
+  width: 100%;
+}
+
+.HeadrDashboard h3 {
+  color: white;
+}
+
+.HeadrDashboard button {
+  padding: 5px 30px;
+  border-radius: 5px;
+  font-size: 23px;
+  font-weight: 500;
+  background-color: white;
+  color: #f5365c;
+}
+
+.HeadrDashboard button:hover {
+  border: 1px solid white !important;
+  color: white;
+  background: transparent;
 }

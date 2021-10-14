@@ -1,5 +1,7 @@
 <template>
     <div class="NewPopup">
+             <div  v-if="SpinnerWork" class="loader">Loading...</div>
+            <div v-if="SpinnerWork" class="BlackPage"></div>
             <h2  v-if="NewShopping">Ajouter shopping</h2>
             <h2  v-if="UpdateShopping">Modifier shopping</h2>
             <h2  v-if="ShowShopping"> aperçu  shopping</h2>
@@ -23,7 +25,7 @@
                     <span v-if="SubmitInscription && EmailExist" class="ErrorFaild">Email déja exist</span>
                 </div>
                 <div class="ZoneInput Checkboxzone">
-                  <input  :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''" type="checkbox" class="CheckboxWebSite" @click="ShowInputWebsite ? ShowInputWebsite = false : ShowInputWebsite = true">
+                  <input  :checked='ShowInputWebsite ?  true : false' :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''" type="checkbox" class="CheckboxWebSite" @click="ShowInputWebsite ? ShowInputWebsite = false : ShowInputWebsite = true">
                   <span>Avez-vous un site web ?</span>
                 </div>
                 <div v-if="ShowInputWebsite"  class="ZoneInput">
@@ -91,47 +93,48 @@
                         <input  :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''"  type="text" placeholder="0 DH" v-model="PriceAttractif__Faild">
                     </div>
                 </div>
-                <div class="ZoneInput CoverImg">
-                    <span>couverture image</span>
-                    <input type="file" hidden ref="ImgCover" @change="ImgCoverChanged()"  :disabled="ShowShopping" >
-                    <div class="AddImg" @click="$refs.ImgCover.click()" :style="ShowShopping ?  'cursor: not-allowed' : ''">
-                        <img v-if="ImgCover != '' " :src="ImgCover" alt="">
-                        <svg  v-if="ImgCover == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
+            <div class="ZoneInput CoverImg">
+                  <span>couverture image</span>
+                  <input  :disabled="this.PropsDataFromShppingToPopup.Condition == 'Show'" accept=".jpg,.jpeg" type="file" hidden ref="ImgCover" @change="ImgCoverChanged()">
+                  <div class="AddImg" @click="$refs.ImgCover.click()"  :style="this.PropsDataFromShppingToPopup.Condition == 'Show' ? 'cursor: not-allowed' : ''">
+                      <img    v-if="ImgCover != '' " :src="DunamicImgCover + ImgCover" alt="">
+                      <svg  v-if="ImgCover == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
+                  </div>
+                  <span  v-if="SubmitInscription && ImgCover == '' " class="ErrorFaild">entrer background image</span>
+            </div>
+            <div class="ZoneInput ">
+                  <span>Les images</span>
+                  <div class="LesImgs ">
+                    <input  :disabled="this.PropsDataFromShppingToPopup.Condition == 'Show'"  accept=".jpg,.jpeg"  type="file" hidden ref="Img1" @change="Img1Changed()">
+                    <input  :disabled="this.PropsDataFromShppingToPopup.Condition == 'Show'"  accept=".jpg,.jpeg"  type="file" hidden ref="Img2" @change="Img2Changed()">
+                    <input  :disabled="this.PropsDataFromShppingToPopup.Condition == 'Show'"  accept=".jpg,.jpeg"  type="file" hidden ref="Img3" @change="Img3Changed()">
+                    <input  :disabled="this.PropsDataFromShppingToPopup.Condition == 'Show'"  accept=".jpg,.jpeg"  type="file" hidden ref="Img4" @change="Img4Changed()">
+                    <div class="AddImg" @click="$refs.Img1.click()"  :style="this.PropsDataFromShppingToPopup.Condition == 'Show' ? 'cursor: not-allowed' : ''">
+                        <img  v-if="Img1 != '' " :src="DunamicImg1 + Img1" alt="" >
+                        <svg  v-if="Img1 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
+                        <span v-if="SubmitInscription && Img1 == '' "  class="ErrorFaild">entrer image principale de l'organisme (image 1)</span>
                     </div>
-                    <span  v-if="SubmitInscription && ImgCover == '' " class="ErrorFaild">entrer background image</span>
-                </div>
-                <div class="ZoneInput ">
-                    <span>Les images</span>
-                    <div class="LesImgs ">
-                        <input type="file" hidden ref="Img1" @change="Img1Changed()"  :disabled="ShowShopping"  >
-                        <input type="file" hidden ref="Img2" @change="Img2Changed()"  :disabled="ShowShopping"  >
-                        <input type="file" hidden ref="Img3" @change="Img3Changed()"  :disabled="ShowShopping"  >
-                        <input type="file" hidden ref="Img4" @change="Img4Changed()"  :disabled="ShowShopping"  >
-                        <div class="AddImg" @click="$refs.Img1.click()" :style="ShowShopping ?  'cursor: not-allowed' : ''">
-                            <img v-if="Img1 != '' " :src="Img1" alt="">
-                            <svg  v-if="Img1 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
-                            <span v-if="SubmitInscription && Img1 == '' "  class="ErrorFaild">entrer image principale de l'organisme (image 1)</span>
-                        </div>
-                        <div class="AddImg"  @click="$refs.Img2.click()" :style="ShowShopping ?  'cursor: not-allowed' : ''">
-                            <img v-if="Img2 != '' " :src="Img2" alt="">
-                            <svg  v-if="Img2 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
-                        </div>
-                        <div class="AddImg"  @click="$refs.Img3.click()" :style="ShowShopping ?  'cursor: not-allowed' : ''">
-                            <img v-if="Img3 != '' " :src="Img3" alt="">
-                            <svg  v-if="Img3 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
-                        </div>
-                        <div class="AddImg"  @click="$refs.Img4.click()" :style="ShowShopping ?  'cursor: not-allowed' : ''">
-                            <img v-if="Img4 != '' " :src="Img4" alt="">
-                            <svg  v-if="Img4 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
-                        </div>
+                    <div class="AddImg"  @click="$refs.Img2.click()"  :style="this.PropsDataFromShppingToPopup.Condition == 'Show' ? 'cursor: not-allowed' : ''">
+                        <img v-if="Img2 != '' " :src="DunamicImg2 + Img2" alt="">
+                        <svg  v-if="Img2 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
                     </div>
+                    <div class="AddImg"  @click="$refs.Img3.click()" :style="this.PropsDataFromShppingToPopup.Condition == 'Show' ? 'cursor: not-allowed' : ''">
+                        <img v-if="Img3 != '' " :src="DunamicImg3 + Img3" alt="">
+                        <svg  v-if="Img3 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
+                    </div>
+                    <div class="AddImg"  @click="$refs.Img4.click()" :style="this.PropsDataFromShppingToPopup.Condition == 'Show' ? 'cursor: not-allowed' : ''">
+                        <img v-if="Img4 != '' " :src="DunamicImg4 + Img4" alt="">
+                        <svg  v-if="Img4 == '' "  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M21 6h-3.17L16 4h-6v2h5.12l1.83 2H21v12H5v-9H3v9c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM8 14c0 2.76 2.24 5 5 5s5-2.24 5-5-2.24-5-5-5-5 2.24-5 5zm5-3c1.65 0 3 1.35 3 3s-1.35 3-3 3-3-1.35-3-3 1.35-3 3-3zM5 6h3V4H5V1H3v3H0v2h3v3h2z"/></svg>
+                    </div>
+                  </div>
 
-                </div>
+            </div>
                 <div class="ZoneInput">
                     <span>Description de l'organisme</span>
                     <div class="InputFaild">
-                        <textarea :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''"  placeholder="écrivez-lui votre description" v-model="Description__Faild"> </textarea>
+                        <textarea  @keyup="CavuleNumberChare()" :disabled="ShowShopping" :style="ShowShopping ?  'cursor: not-allowed' : ''"  placeholder="écrivez-lui votre description" v-model="Description__Faild"> </textarea>
                     </div>
+                    <p>{{ NumberCharDescription}}</p>
                     <span  v-if="SubmitInscription && Description__Faild.length < 200" class="ErrorFaild">200 caractères au min</span>
                 </div>
                 <l-map
@@ -200,6 +203,7 @@ export default {
     UpdateShopping:false,
     ShowShopping:false,
     RowClicked:'',
+    SpinnerWork:false,
     //// FAICAL VARIABLES
     SubmitInscription: false,
     NomOrganisme__Faild:'',
@@ -215,7 +219,7 @@ export default {
     PosteOccupé__Faild:'',
     Adresse__Faild:'',
     Localisation__Faild:'',
-    PriceAttractif__Faild:'',
+    PriceAttractif__Faild:0,
     Password__Faild:'',
     CondirfPassword__Faild:'',
     ImgCover:'',
@@ -280,7 +284,12 @@ export default {
 
     RPassword: "promovisiteagadir",
     // RPasswordeRules: [(v) => !!v || "Ce champ est obligatoire"],
-
+    DunamicImgCover:'',
+    DunamicImg1 :'',
+    DunamicImg2:'',
+    DunamicImg3:'',
+    DunamicImg4:'',
+    NumberCharDescription:0,
 
 
 
@@ -369,24 +378,32 @@ export default {
   methods: {
 
 /////Faical methode
-
+    CavuleNumberChare(){
+      this.NumberCharDescription = this.Description__Faild.length
+      console.log(this.NumberCharDescription)
+    },
     ImgCoverChanged(){
+        this.DunamicImgCover = ''
         let file = this.$refs.ImgCover.files[0]
         this.ImgCover = URL.createObjectURL(file);  
     },
     Img1Changed(){
+        this.DunamicImg1 =''
         let file = this.$refs.Img1.files[0]
         this.Img1 = URL.createObjectURL(file); 
     },
     Img2Changed(){
+        this.DunamicImg2 =''
         let file = this.$refs.Img2.files[0]
         this.Img2 = URL.createObjectURL(file); 
     },
     Img3Changed(){
+        this.DunamicImg3 =''
         let file = this.$refs.Img3.files[0]
         this.Img3 = URL.createObjectURL(file); 
     },
     Img4Changed(){
+        this.DunamicImg4 = ''
         let file = this.$refs.Img4.files[0]
         this.Img4 = URL.createObjectURL(file); 
     },
@@ -411,7 +428,55 @@ export default {
           this.EmailExist === false && /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.Email__Faild) &&
           this.Description__Faild.length > 200&& this.ImgCover != '' && 
           this.Img1 != ''){
-                  //// GET DATA
+
+            if( this.ImgCover != '' && this.$refs.ImgCover.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image couverture ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if(this.Img1 != '' && this.$refs.Img1.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 1 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if( this.Img2 != '' && this.$refs.Img2.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 2 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if( this.Img3 != '' &&  this.$refs.Img3.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 3 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else if( this.Img4 != '' &&  this.$refs.Img4.files[0].size > 1000000){
+              Swal.fire({
+                position: 'center-center',
+                icon: 'warning',
+                title: "la taille de image 4 ne doit pas depasser 1mo",
+                showConfirmButton: false,
+                timer: 5000
+              })
+            }
+            else{
+      this.SpinnerWork = true
+                         //// GET DATA
       const formData = new FormData();
       formData.append("NomOrganisme", this.NomOrganisme__Faild);
       formData.append("Email", this.Email__Faild.trimEnd());
@@ -424,13 +489,11 @@ export default {
       formData.append("Localisation",this.ValueItemLocalisation);
       formData.append("InitialPrice",this.PriceAttractif__Faild);
       formData.append("userRole",this.UserRole);
-      formData.append("hotelBackroungImg",this.ImgCover);
-      formData.append("hotelImgOne",this.Img1);
-      formData.append("hotelImgTwo",this.Img2);
-      formData.append("hotelImgTree",this.Img3);
-      formData.append("hotelImgFour",this.Img4);
-      formData.append("hotelImgTree",this.Img3);
-      formData.append("hotelImgFour",this.Img4);
+      formData.append("hotelBackroungImg",this.$refs.ImgCover.files[0]);
+      formData.append("hotelImgOne",this.$refs.Img1.files[0]);
+      formData.append("hotelImgTwo",this.$refs.Img2.files[0]);
+      formData.append("hotelImgTree",this.$refs.Img3.files[0]);
+      formData.append("hotelImgFour",this.$refs.Img4.files[0]);
       formData.append("Password", this.Password);
       formData.append("CPassword", this.RPassword);
       formData.append("lat",this.position.lat ? this.position.lat : "30.425493");
@@ -451,10 +514,12 @@ export default {
                 showConfirmButton: false,
                 timer: 5000
             })
+            this.SpinnerWork = false
             this.$emit('ClosePopup')
         })
         .catch((e) => {
           if (e.response.data.error) {
+              this.SpinnerWork = false
               Swal.fire({
                 position: 'center-center',
                 icon: 'error',
@@ -464,6 +529,8 @@ export default {
               })
           }
         });
+            }
+
 
         }
         else{
@@ -478,67 +545,136 @@ export default {
         }
     },
     UpdateShoppingFunction(){
-      console.log('Update')
-      this.SubmitInscription = true
-      if(this.NomOrganisme__Faild !== '' && this.Email__Faild !== '' &&
+    this.SubmitInscription = true
+    if(this.NomOrganisme__Faild !== '' && this.Email__Faild !== '' &&
           this.EmailExist === false && /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(this.Email__Faild) &&
           this.Description__Faild.length > 200&& this.ImgCover != '' && 
           this.Img1 != ''){
       //// GET DATA
-                  //// GET DATA
-      const formData = new FormData();
-      formData.append("NomOrganisme", this.NomOrganisme__Faild);
-      formData.append("Email", this.Email__Faild.trimEnd());
-      formData.append("HaveSiteweb", this.ShowInputWebsite);
-      formData.append("UserSiteweb", this.WebSite__Faild);
-      formData.append("Tel", this.Téléphone__Faild);
-      formData.append("Description", this.Description__Faild);
-      formData.append("haveFacebook", this.Facbook__Faild);
-      formData.append("haveInstagram", this.Instagram__Faild);
-      formData.append("Localisation",this.ValueItemLocalisation);
-      formData.append("InitialPrice",this.PriceAttractif__Faild);
-      formData.append("userRole",this.UserRole);
-      formData.append("hotelBackroungImg",this.ImgCover);
-      formData.append("hotelImgOne",this.Img1);
-      formData.append("hotelImgTwo",this.Img2);
-      formData.append("hotelImgTree",this.Img3);
-      formData.append("hotelImgFour",this.Img4);
-      formData.append("hotelImgTree",this.Img3);
-      formData.append("hotelImgFour",this.Img4);
-      formData.append("Password", this.Password);
-      formData.append("CPassword", this.RPassword);
-      formData.append("lat",this.position.lat ? this.position.lat : "30.425493");
-      formData.append("lng",this.position.lng ? this.position.lng : "-9.600704");
-      for (var i = 0; i < this.valueItemsOne.length; i++) {
-        formData.append("Activite", this.valueItemsOne[i]);
-      }
-      for (var i = 0; i < this.valueItemsTwo.length; i++) {
-        formData.append("Services", this.valueItemsTwo[i]);
-      }
-      axios
-        .post(`${API_URL}/user/saveForm?userID=${this.$route.params.userID}`, formData)
-        .then(() => {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Succefly New Shopping',
-                showConfirmButton: false,
-                timer: 5000
-            })
-            this.$emit('ClosePopup')
-        })
-        .catch((e) => {
-          if (e.response.data.error) {
-              Swal.fire({
-                position: 'center-center',
-                icon: 'error',
-                title: e.response.data.error,
-                showConfirmButton: false,
-                timer: 5000
-              })
-          }
-        });
+      /// GET DATA
+            if( this.DunamicImgCover !== 'data:image/jpeg;base64,'  && this.ImgCover != '' && this.$refs.ImgCover.files[0].size > 1000000){
+              if( this.ImgCover != '' && this.$refs.ImgCover.files[0].size > 1000000){
+                Swal.fire({
+                  position: 'center-center',
+                  icon: 'warning',
+                  title: "la taille de image couverture ne doit pas depasser 1mo",
+                  showConfirmButton: false,
+                  timer: 5000
+                })
 
+              }
+            }
+            else if( this.DunamicImg1 !== 'data:image/jpeg;base64,'  && this.Img1 != '' && this.$refs.Img1.files[0].size > 1000000){
+              if( this.ImgCover != '' && this.$refs.Img1.files[0].size > 1000000){
+                Swal.fire({
+                  position: 'center-center',
+                  icon: 'warning',
+                  title: "la taille de image 1 doit pas depasser 1mo",
+                  showConfirmButton: false,
+                  timer: 5000
+                })
+              }
+            }
+            else if( this.DunamicImg2 !== 'data:image/jpeg;base64,'  && this.Img2!= '' && this.$refs.Img2.files[0].size > 1000000 ){
+              if( this.ImgCover != '' && this.$refs.Img2.files[0].size > 1000000){
+                Swal.fire({
+                  position: 'center-center',
+                  icon: 'warning',
+                  title: "la taille de image 2 ne doit pas depasser 1mo",
+                  showConfirmButton: false,
+                  timer: 5000
+                })
+              }
+            }
+            else if( this.DunamicImg3 !== 'data:image/jpeg;base64,'  && this.Img3!= '' && this.$refs.Img3.files[0].size > 1000000){
+              if( this.ImgCover != '' && this.$refs.Img3.files[0].size > 1000000){
+                Swal.fire({
+                  position: 'center-center',
+                  icon: 'warning',
+                  title: "la taille de image 3 doit pas depasser 1mo",
+                  showConfirmButton: false,
+                  timer: 5000
+                })
+              }
+            }
+            else if( this.DunamicImg4 !== 'data:image/jpeg;base64,' && this.Img4!= '' && this.$refs.Img4.files[0].size > 1000000 ){
+              if( this.ImgCover != '' && this.$refs.Img4.files[0].size > 1000000){
+                Swal.fire({
+                  position: 'center-center',
+                  icon: 'warning',
+                  title: "la taille de image 4 ne doit pas depasser 1mo",
+                  showConfirmButton: false,
+                  timer: 5000
+                })
+              }
+
+            }
+            else{
+                console.log("im her now")
+                  let NewCoverImg= ''
+                  this.DunamicImgCover === 'data:image/jpeg;base64,' ? NewCoverImg = this.$refs.ImgCover.files[0] : NewCoverImg = this.$refs.ImgCover.files[0]
+                  let NewImg1= ''
+                  this.DunamicImg1 === 'data:image/jpeg;base64,' ? NewImg1 = this.$refs.Img1 : NewImg1= this.$refs.Img1.files[0]
+                  let NewImg2 =  ''
+                  this.DunamicImg2 === 'data:image/jpeg;base64,' && this.Img2 != ''  ? NewImg2 = this.$refs.Img2 : NewImg2 = this.$refs.Img2.files[0]
+                  let NewImg3 = ''
+                  this.DunamicImg3 === 'data:image/jpeg;base64,' && this.Img3 != ''  ? NewImg3= this.$refs.Img3 : NewImg3= this.$refs.Img3.files[0]
+                  let NewImg4 =  ''
+                  this.DunamicImg4 === 'data:image/jpeg;base64,' &&  this.Img4 != '' ? NewImg4 = this.$refs.Img4 : NewImg4 = this.$refs.Img4.files[0]
+                  this.SpinnerWork = true
+                  const formData = new FormData();
+                  formData.append("NomOrganisme", this.NomOrganisme__Faild);
+                  formData.append("Email", this.Email__Faild.trimEnd());
+                  formData.append("HaveSiteweb", this.ShowInputWebsite);
+                  formData.append("UserSiteweb", this.WebSite__Faild);
+                  formData.append("Tel", this.Téléphone__Faild);
+                  formData.append("Description", this.Description__Faild);
+                  formData.append("haveFacebook", this.Facbook__Faild);
+                  formData.append("haveInstagram", this.Instagram__Faild);
+                  formData.append("Localisation",this.ValueItemLocalisation);
+                  formData.append("InitialPrice",this.PriceAttractif__Faild);
+                  formData.append("userRole",this.UserRole);
+                  formData.append("hotelBackroungImg",NewCoverImg);
+                  formData.append("hotelImgOne",NewImg1);
+                  formData.append("hotelImgTwo",NewImg2);
+                  formData.append("hotelImgTree",NewImg3);
+                  formData.append("hotelImgFour",NewImg4);
+                  formData.append("Password", this.Password);
+                  formData.append("CPassword", this.RPassword);
+                  formData.append("lat",this.position.lat ? this.position.lat : "30.425493");
+                  formData.append("lng",this.position.lng ? this.position.lng : "-9.600704");
+                  for (var i = 0; i < this.valueItemsOne.length; i++) {
+                    formData.append("Activite", this.valueItemsOne[i]);
+                  }
+                  for (var i = 0; i < this.valueItemsTwo.length; i++) {
+                    formData.append("Services", this.valueItemsTwo[i]);
+                  }
+                  axios
+                    .put(`${API_URL}/user/updateUserForm/user/${this.PropsDataFromShppingToPopup.IDRowClciked}?userID=${this.$route.params.userID}`,formData)
+                    .then(() => {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Succefly Update Shopping',
+                            showConfirmButton: false,
+                            timer: 5000
+                        })
+                        this.SpinnerWork = false
+                        this.$emit('ClosePopup')
+                    })
+                    .catch((e) => {
+                      this.SpinnerWork = false
+                      if (e.response.data.error) {
+                          Swal.fire({
+                            position: 'center-center',
+                            icon: 'error',
+                            title: e.response.data.error,
+                            showConfirmButton: false,
+                            timer: 5000
+                          })
+                      }
+                    });
+            }
         }
         else{
             console.log("some faild is emty")
@@ -551,8 +687,58 @@ export default {
               })
         }
     },
-    GetUserDataIfclickRow(){
-      console.log("ghhh")
+    GetRowDataClicked(){
+      if(this.PropsDataFromShppingToPopup.Condition == "Show" || this.PropsDataFromShppingToPopup.Condition == "Update"){
+        this.DunamicImgCover='data:image/jpeg;base64,',
+        this.DunamicImg1 ='data:image/jpeg;base64,',
+        this.DunamicImg2='data:image/jpeg;base64,',
+        this.DunamicImg3='data:image/jpeg;base64,',
+        this.DunamicImg4='data:image/jpeg;base64,',
+        this.valueItemsOne= [],
+        this.valueItemsTwo = []
+        axios.get(`${API_URL}/user/getOneHotelData/${this.PropsDataFromShppingToPopup.IDRowClciked}?userID=${this.$route.params.userID}`)
+        .then((response) => {
+              console.log(response.data.haveFacebook )
+              console.log(response.data.haveFacebook )
+
+                this.NomOrganisme__Faild=response.data.NomOrganisme
+                this.Email__Faild=response.data.Email
+                this.ShowInputWebsite=response.data.HaveSiteweb
+                response.data.HaveSiteweb ?   this.WebSite__Faild=response.data.UserSiteweb :  this.WebSite__Faild=''
+                response.data.haveFacebook === "false" ?  this.Facbook__Faild = '' : this.Facbook__Faild = response.data.haveFacebook 
+                response.data.haveInstagram === "false" ? this.Instagram__Faild = ''  :  this.Instagram__Faild = response.data.haveInstagram
+
+                // this.Facbook__Faild=response.data.haveFacebook
+                // this.Instagram__Faild=response.data.haveInstagram
+
+                for(let i = 0 ; i <  response.data.Activite.length ; i++){
+                    this.valueItemsOne.push(response.data.Activite[i])
+                }
+                for(let i = 0 ; i <  response.data.Services.length ; i++){
+                    this.valueItemsTwo.push(response.data.Services[i])
+                }
+                this.NomResponsable__Faild=response.data.Nom
+                this.Téléphone__Faild=response.data.Tel
+                this.PriceAttractif__Faild=response.data.InitialPrice
+                this.Adresse__Faild=response.data.Adress
+                this.PosteOccupé__Faild=response.data.Post
+                this.Description__Faild=response.data.Description
+                this.ValueItemLocalisation=response.data.Localisation
+                this.ImgCover=response.data.hotelBackroungImgC.data
+                this.Img1 =response.data.hotelImgOneC.data
+                response.data.hotelImgTwoC.data !== "" ?   this.Img2=response.data.hotelImgTwoC.data : this.Img2 = ''
+                response.data.hotelImgTreeC.data !== "" ?   this.Img3=response.data.hotelImgTreeC.data : this.Img3 = ''
+                response.data.hotelImgFourC.data !== "" ?   this.Img4=response.data.hotelImgFourC.data : this.Img4 = ''
+                this.Description__Faild=response.data.Description
+                console.log(response.data)
+                
+                this.NumberCharDescription = response.data.Description.length
+
+
+                
+        });
+      }
+
     },
     
 
@@ -605,7 +791,7 @@ export default {
   mounted() {
     this.getUserPosition();
     this.CheckCondition()
-    this.GetUserDataIfclickRow()
+    this.GetRowDataClicked()
   },
 };
 </script>

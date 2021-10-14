@@ -1,18 +1,20 @@
 <template>
   <div class="ProfileUserDashborad">
     <div class="BlackPage" v-if="ShowPopupNewBienEtre || ShowPopupNewShopping || ShowPopupNewExursion || ShowPopupNewOffer" @click='RemovePopup'></div>
-    <PopupNewShpping v-if="ShowPopupNewShopping" :PropsDataFromShppingToPopup='PropsDataFromShppingToPopup' @ClosePopup='ShowPopupNewShopping =false'/>
-    <PopupNewExursion v-if="ShowPopupNewExursion" :PropsDataFromExursion="PropsDataFromExursion"  @ClosePopup='ShowPopupNewExursion =false'/>
-    <PopupNewOffer v-if="ShowPopupNewOffer" :PropsDataFromOffers="PropsDataFromOffers"  @ClosePopup='ShowPopupNewOffer =false' />
-    <PopupNewBienEtre v-if="ShowPopupNewBienEtre" :PropsDataFromBineEtre="PropsDataFromBineEtre"  @ClosePopup='ShowPopupNewBienEtre =false' />
+    <PopupNewShpping v-if="ShowPopupNewShopping" :PropsDataFromShppingToPopup='PropsDataFromShppingToPopup'  @ClosePopup='ClosePopup()'/>
+    <PopupNewExursion v-if="ShowPopupNewExursion" :PropsDataFromExursion="PropsDataFromExursion"  @ClosePopup='ClosePopup()'/>
+    <PopupNewBienEtre v-if="ShowPopupNewBienEtre" :PropsDataFromBineEtre="PropsDataFromBineEtre"  @ClosePopup='ClosePopup()' />
     <div class="SideBareZone">
         <SIdeBare  @SwitchSideBare='SwitchSideBare'/>
     </div>
     <div class="ContentZone">
-        <BienEtreShpping  v-if="PageBienEtreShpping"  @OpenNewShopping='ShoppingFunction' />
-        <BienEtre v-if="PageBienEtre"  @OpenNewBienEtre='BienEtreFunction' />
-        <Excursion   v-if="PageExcursion" @OpenNewExursion='ExursionFunction' />
-        <Offre   v-if="PageOffre"  @OpenNewOffer='OfferFunction' />
+        <div Class="HeadrDashboard">
+            <h3>TABLEAU DE BORD</h3>
+              <button @click='LogoutFuntion()'>Logout</button>
+        </div>
+        <BienEtreShpping  v-if="PageBienEtreShpping"  @OpenNewShopping='ShoppingFunction' :RefleshTheTableShopping="RefleshTheTableShopping" />
+        <BienEtre v-if="PageBienEtre"  @OpenNewBienEtre='BienEtreFunction'  :RefleshTheTableShopping="RefleshTheTableShopping"  />
+        <Excursion   v-if="PageExcursion" @OpenNewExursion='ExursionFunction'  :RefleshTheTableShopping="RefleshTheTableShopping"  />
         <FormUpdate v-if="VotreInformation"/>
         <Configuration v-if="PageConfiguration "/>
     </div>
@@ -33,12 +35,10 @@ import SIdeBare from "../components/SideBarUser.vue"
 import BienEtreShpping from "../components/BineEtreShpping.vue"
 import BienEtre from "../components/BienEtre.vue"
 import Excursion from "../components/Excursion.vue"
-import Offre from "../components/Offre.vue"
 import FormUpdate from "../components/UpdateProfileUser.vue"
 import Configuration from "../components/Confugiration.vue"
 import PopupNewShpping from "../components/PopupNewShpping.vue"
 import PopupNewExursion from "../components/PoupNewExursion.vue"
-import PopupNewOffer from "../components/PopupNewOffre.vue"
 import PopupNewBienEtre from "../components/PopupNewBienEtre.vue"
 
 
@@ -59,6 +59,7 @@ export default {
   data: () => ({
 
     /// NEW DATA
+    RefleshTheTableShopping : false,
     PageBienEtreShpping:false,
     PageExcursion:false,
     PageOffre:false,
@@ -207,12 +208,10 @@ export default {
     SIdeBare,
     BienEtreShpping,
     Excursion,
-    Offre,
     FormUpdate,
     Configuration,
     PopupNewShpping,
     PopupNewExursion,
-    PopupNewOffer ,
     BienEtre,
     PopupNewBienEtre
   },
@@ -310,6 +309,15 @@ export default {
     },
   },
   methods: {
+    LogoutFuntion(){
+        
+    },
+    ClosePopup() {
+      this.ShowPopupNewShopping = false
+      this.ShowPopupNewExursion =false
+      this.ShowPopupNewBienEtre =false
+      this.RefleshTheTableShopping ? this.RefleshTheTableShopping = false : this.RefleshTheTableShopping = true
+    },
     SwitchSideBare(PageSwitch){
         this.PageBienEtreShpping = false
         this.PageExcursion = false

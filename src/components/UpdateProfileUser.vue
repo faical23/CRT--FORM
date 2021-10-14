@@ -1,10 +1,31 @@
 <template>
-  <div class=" ContentDashboardUser">
+  <div class=" ContentDashboardUser VotreInfoProfile">
     <div  v-if="SpinnerWork" class="loader">Loading...</div>
     <div v-if="SpinnerWork" class="BlackPage"></div>
         <div class="Hero">
             <span class="Mask"></span>
-            <h1>Votre Information ? </h1>
+            <div Class="CardConfiguration">
+                    <div class="CardItem" @click="ShowUpdatePassword = true">
+                        <div>
+                            <h5>Shopping</h5>
+                            <h2>12</h2>
+                        </div>
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
+                    <div class="CardItem">
+                        <div>
+                            <h5>Bien Etre</h5>
+                            <h2>12</h2>
+                        </div>
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>
+                    </div>
+                    <div class="CardItem">
+                        <div>
+                            <h5>Excursion</h5>
+                            <h2>12</h2>
+                        </div>
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
+            </div>
+            <h1>Votre Information </h1>
       </div>
     <div class="userDashBoard">
     <v-row no-gutters>
@@ -160,8 +181,9 @@
             <div >
                 <span>Description de l'organisme</span>
                 <div class="InputFaild">
-                    <textarea placeholder="écrivez-lui votre description"  v-model="Description__Faild"> </textarea>
+                    <textarea @keyup="CavuleNumberChare()" placeholder="écrivez-lui votre description"  v-model="Description__Faild"> </textarea>
                 </div>
+                <p>{{ NumberCharDescription}}</p>
                 <span  v-if="SubmitInscription && Description__Faild.length < 200" class="ErrorFaild">200 caractères au min</span>
             </div>
       <l-map
@@ -230,6 +252,7 @@ export default {
   data: () => ({
 
     //// FAICAL VARIABLES
+    NumberCharDescription:0,
     SubmitInscription: false,
     NomOrganisme__Faild:'',
     Email__Faild:'',
@@ -380,7 +403,10 @@ export default {
     },
   },
   methods: {
-
+    CavuleNumberChare(){
+      this.NumberCharDescription = this.Description__Faild.length
+      console.log(this.NumberCharDescription)
+    },
     ImgCoverChanged(){
         this.DunamicImgCover = ''
         let file = this.$refs.ImgCover.files[0]
@@ -471,7 +497,6 @@ export default {
               }
 
             }
-
             else {
                 let NewCoverImg= ''
                 this.DunamicImgCover === 'data:image/jpeg;base64,' ? NewCoverImg = this.$refs.ImgCover : NewCoverImg = this.$refs.ImgCover.files[0]
@@ -556,8 +581,9 @@ export default {
         }
     },
     GetUserDataByDefault(){
-      console.log("getting")
-      axios.get(`${API_URL}/user/getOneHotelData/${this.$route.params.userID}`)
+
+
+    axios.get(`${API_URL}/user/getOneHotelData/${this.$route.params.userID}`)
       .then((response) => {
               this.NomOrganisme__Faild=response.data.NomOrganisme
               this.Email__Faild=response.data.Email
@@ -580,10 +606,11 @@ export default {
               this.ValueItemLocalisation=response.data.Localisation
               this.ImgCover=response.data.hotelBackroungImgC.data
               this.Img1 =response.data.hotelImgOneC.data
-              response.data.hotelImgTwoC.data !== "''" ?   this.Img2=response.data.hotelImgTwoC.data : this.Img2 = ''
+              response.data.hotelImgTwoC.data !== "" ?   this.Img2=response.data.hotelImgTwoC.data : this.Img2 = ''
               response.data.hotelImgTreeC.data !== "" ?   this.Img3=response.data.hotelImgTreeC.data : this.Img3 = ''
               response.data.hotelImgFourC.data !== "" ?   this.Img4=response.data.hotelImgFourC.data : this.Img4 = ''
               this.Description__Faild=response.data.Description
+              this.NumberCharDescription = response.data.Description.length
               console.log(response.data)
               
       });

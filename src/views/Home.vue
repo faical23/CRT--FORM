@@ -183,8 +183,9 @@
             <div >
                 <span>Description de l'organisme</span>
                 <div class="InputFaild">
-                    <textarea placeholder="écrivez-lui votre description" v-model="Description__Faild"> </textarea>
+                    <textarea @keyup="CavuleNumberChare()" placeholder="écrivez-lui votre description" v-model="Description__Faild"> </textarea>
                 </div>
+                <p>{{ NumberCharDescription}}</p>
                 <span  v-if="SubmitInscription && Description__Faild.length < 200" class="ErrorFaild">200 caractères au min</span>
             </div>
             <l-map
@@ -324,6 +325,7 @@ export default {
     ],
     ValueItemLocalisation:"AGADIR",
     SpinnerWork:false,
+    NumberCharDescription:0,
 
 
 
@@ -442,7 +444,10 @@ export default {
     },
   },
   methods: {
-
+    CavuleNumberChare(){
+      this.NumberCharDescription = this.Description__Faild.length
+      console.log(this.NumberCharDescription)
+    },
     ImgCoverChanged(){
         let file = this.$refs.ImgCover.files[0]
         this.ImgCover = URL.createObjectURL(file);  
