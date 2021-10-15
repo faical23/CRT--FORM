@@ -127,6 +127,18 @@
                     <input type="number" placeholder="0 DH" v-model="PriceAttractif__Faild">
                 </div>
             </div>
+              <div class="ZoneInput">
+                <span>Hachtag</span>
+                      <v-combobox multiple
+                                  v-model="select" 
+                                  append-icon
+                                  chips
+                                  deletable-chips
+                                  :search-input.sync="search" 
+                                  @keyup.tab="updateTags"
+                                  @paste="updateTags">
+                      </v-combobox>
+            </div>
             <div class="ZoneInput">
                 <span>Mot de passe</span>
                 <div class="InputFaild" :style="SubmitInscription &&  Password__Faild ==='' ?'border : 1px solid red ' : ''">

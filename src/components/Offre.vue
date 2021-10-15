@@ -16,6 +16,7 @@
                     <div class="HeadrTable">
                         <span>NOM DE L4ORGANISME</span>
                         <span>E-MAIL</span>
+                        <span>STATUS</span>
                         <span>ACTIVER/DESACTIVER</span>
                         <span>APERÇU/MODIFIER</span>
                         <span>SUPPRIMER</span>

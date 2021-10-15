@@ -1,9 +1,10 @@
 <template>
   <div class="ProfileUserDashborad">
-    <div class="BlackPage" v-if="ShowPopupNewBienEtre || ShowPopupNewShopping || ShowPopupNewExursion || ShowPopupNewOffer" @click='RemovePopup'></div>
+    <div class="BlackPage" v-if=" ShowMdpPopup || ShowPopupNewBienEtre || ShowPopupNewShopping || ShowPopupNewExursion || ShowPopupNewOffer" @click='RemovePopup'></div>
     <PopupNewShpping v-if="ShowPopupNewShopping" :PropsDataFromShppingToPopup='PropsDataFromShppingToPopup'  @ClosePopup='ClosePopup()'/>
     <PopupNewExursion v-if="ShowPopupNewExursion" :PropsDataFromExursion="PropsDataFromExursion"  @ClosePopup='ClosePopup()'/>
     <PopupNewBienEtre v-if="ShowPopupNewBienEtre" :PropsDataFromBineEtre="PropsDataFromBineEtre"  @ClosePopup='ClosePopup()' />
+    <PopupMdp v-if="ShowMdpPopup"/>
     <div class="SideBareZone">
         <SIdeBare  @SwitchSideBare='SwitchSideBare'/>
     </div>
@@ -12,11 +13,13 @@
             <h3>TABLEAU DE BORD</h3>
               <button @click='LogoutFuntion()'>Logout</button>
         </div>
+        <Accueil v-if="PageAccueil" />
         <BienEtreShpping  v-if="PageBienEtreShpping"  @OpenNewShopping='ShoppingFunction' :RefleshTheTableShopping="RefleshTheTableShopping" />
         <BienEtre v-if="PageBienEtre"  @OpenNewBienEtre='BienEtreFunction'  :RefleshTheTableShopping="RefleshTheTableShopping"  />
         <Excursion   v-if="PageExcursion" @OpenNewExursion='ExursionFunction'  :RefleshTheTableShopping="RefleshTheTableShopping"  />
         <FormUpdate v-if="VotreInformation"/>
         <Configuration v-if="PageConfiguration "/>
+        <Comment v-if="PageComment " />
     </div>
   </div>
 </template>
@@ -35,11 +38,15 @@ import SIdeBare from "../components/SideBarUser.vue"
 import BienEtreShpping from "../components/BineEtreShpping.vue"
 import BienEtre from "../components/BienEtre.vue"
 import Excursion from "../components/Excursion.vue"
+import Accueil from "../components/Accueil.vue"
+import Comment from "../components/Comment.vue"
+
 import FormUpdate from "../components/UpdateProfileUser.vue"
-import Configuration from "../components/Confugiration.vue"
+// import Configuration from "../components/Confugiration.vue"
 import PopupNewShpping from "../components/PopupNewShpping.vue"
 import PopupNewExursion from "../components/PoupNewExursion.vue"
 import PopupNewBienEtre from "../components/PopupNewBienEtre.vue"
+import  PopupMdp from "../components/PopupMDp.vue"
 
 
 export default {
@@ -59,11 +66,13 @@ export default {
   data: () => ({
 
     /// NEW DATA
+    PageComment:false,
+    ShowMdpPopup:false,
     RefleshTheTableShopping : false,
     PageBienEtreShpping:false,
     PageExcursion:false,
     PageOffre:false,
-    VotreInformation : true,
+    VotreInformation : false,
     PageConfiguration : false,
     ShowPopupUpdate:false,
     Connfiguration:false,
@@ -77,6 +86,7 @@ export default {
     PageBienEtre:false,
     ShowPopupNewBienEtre:false,
     PropsDataFromBineEtre:'',
+    PageAccueil:true,
 
 //////////////////////////////////
     characterLeft: 0,
@@ -209,11 +219,14 @@ export default {
     BienEtreShpping,
     Excursion,
     FormUpdate,
-    Configuration,
+    // Configuration,
     PopupNewShpping,
     PopupNewExursion,
     BienEtre,
-    PopupNewBienEtre
+    PopupNewBienEtre,
+    Accueil,
+    PopupMdp,
+    Comment
   },
   created() {
       this.Password = sessionStorage.getItem('userPass')
@@ -320,6 +333,7 @@ export default {
       this.ShowPopupNewShopping = false
       this.ShowPopupNewExursion =false
       this.ShowPopupNewBienEtre =false
+      this.ShowMdpPopup = false
       this.RefleshTheTableShopping ? this.RefleshTheTableShopping = false : this.RefleshTheTableShopping = true
     },
     SwitchSideBare(PageSwitch){
@@ -329,6 +343,8 @@ export default {
         this.VotreInformation = false
         this.PageConfiguration = false
         this.PageBienEtre = false
+        this.PageAccueil= false
+        this.PageComment = false
       if(PageSwitch == "BienEtreShopping")
         this.PageBienEtreShpping = true
       else if(PageSwitch == "Excursion")
@@ -338,15 +354,24 @@ export default {
       else if(PageSwitch == "VotreInformation")
         this.VotreInformation = true
       else if(PageSwitch == "Confugiration")
-        this.PageConfiguration = true
+      {
+        this.VotreInformation = true
+        this.ShowMdpPopup = true
+      }
       else if(PageSwitch == "BienEtre")
         this.PageBienEtre = true
+      else if(PageSwitch == "Accueil")
+        this.PageAccueil= true
+        else if(PageSwitch == "Comment")
+        this.PageComment = true
     },
     RemovePopup(){
       this.ShowPopupNewShopping = false
       this.ShowPopupNewExursion  = false
       this.ShowPopupNewOffer = false
       this.ShowPopupNewBienEtre =  false
+      this.ShowMdpPopup = false
+
     },
     ShoppingFunction(Condition){
       this.ShowPopupNewShopping = true

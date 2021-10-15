@@ -1,16 +1,39 @@
 <template>
-    <div class="ContentDashboardUser">
+    <div class="ContentDashboardUser VotreInfoProfile">
         <div class="Hero">
             <span class="Mask"></span>
-            <h1>SHOPPING</h1>
-        </div>
-        <div class="TableZone">
-            <div class="Title">
-                <h3>Lorem Lorem</h3>
-                <button @click='ElementChoose.Condition="New",$emit("OpenNewShopping",ElementChoose)'>Ajouter un shopping</button>
+            <div Class="CardConfiguration">
+                    <div class="CardItem" @click="ShowUpdatePassword = true">
+                        <div>
+                            <h5>Shopping</h5>
+                            <h2>{{ShoppingNumber}}</h2>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
+                    <div class="CardItem">
+                        <div>
+                            <h5>Bien Etre</h5>
+                            <h2>{{BienEtre}}</h2>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>
+                    </div>
+                    <div class="CardItem">
+                        <div>
+                            <h5>Excursion</h5>
+                            <h2>{{ExcursionNumber}}</h2>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM13 20.01L4 11V4h7v-.01l9 9-7 7.02z"/><circle cx="6.5" cy="6.5" r="1.5"/></svg>                    </div>
             </div>
-            <div class="BareSearch">
-                <input type="text" placeholder="Enter le nom de l'organisme" @keyup="SearchShopping()" v-model="Search">
+            <h1>ACCEUIL</h1>
+      </div>
+        <div class="TableZone">
+            <div class="FilterBarAccuil">
+                <div class="ZoneInput">
+                        <span>Filter par</span>
+                        <v-select
+                            :items="itemsLocalisation"
+                            v-model="ValueItemLocalisation"
+                        ></v-select>
+                </div>
             </div>
             <div class="TableData">
                     <div class="HeadrTable">
@@ -43,6 +66,9 @@
                         </span>
                     </div>
             </div>
+            <div class="AfichierToutZone">
+                <button class="AfichierPlus">Afichier plus</button>
+            </div>
         </div>
         <div class="Footer">
             <span>© 2021</span>
@@ -69,6 +95,23 @@ export default {
       },
       Search:'',
       Nodata : false,
+        ExcursionNumber:'',
+        ShoppingNumber:'',
+        BienEtre:'',
+         Offers: [
+        { title: 'Ecusrion' },
+        { title: 'Bien etre' },
+        { title: 'Shopping' },
+
+      ],
+        ValueItemLocalisation:"TOUT",
+            itemsLocalisation:[
+                'TOUT',
+                'SHOPPING',
+                'BIEN ETRE',
+                'EXCURSION',
+    ],
+
     }
 
   },
@@ -110,11 +153,26 @@ export default {
         let SearchElement = this.Search
         this.GetDataShopping( SearchElement)
         console.log(this.Search)
-    }
+    },
+    GetCardStatistic(){
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserBienEtres/${this.$route.params.userID}?OrgName`)
+        .then((response) => {
+          this.BienEtre = response.data.length
+        });
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserShoppings/${this.$route.params.userID}?OrgName`)
+        .then((response) => {
+          this.ShoppingNumber= response.data.length
+        });
+        axios.get(`https://www.promovisiteagadir.searchcept.co.uk/api/user/OneUserExcursions/${this.$route.params.userID}?OrgName`)
+        .then((response) => {
+          this.ExcursionNumber = response.data.length
+        });
+    },
 
   },
   mounted() {
       this.GetDataShopping("")
+      this.GetCardStatistic()
   },
   watch: {
       'RefleshTheTableShopping':function(){

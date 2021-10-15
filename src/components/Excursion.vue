@@ -16,6 +16,7 @@
                     <div class="HeadrTable">
                         <span>NOM DE L4ORGANISME</span>
                         <span>E-MAIL</span>
+                        <span>STATUS</span>
                         <span>ACTIVER/DESACTIVER</span>
                         <span>APERÇU/MODIFIER</span>
                         <span>SUPPRIMER</span>
@@ -27,6 +28,9 @@
                         <span>
                             <button v-if="Item.Activite === true" class="Active">ACTIVE</button>
                             <button v-else class="DESACTIVER">DESACTIVER</button>
+                        </span>
+                        <span>
+                            <button class="Active">ACTIVER</button>
                         </span>
                         <span>
                             <div class="Icons">
